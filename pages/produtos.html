@@ -3,20 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfólio completo de fluidos industriais OilBras — usinagem, estampagem, proteção, limpeza e soluções especiais.">
+  <meta name="description" content="Portfólio completo de fluidos industriais OilBras — usinagem, estampagem, proteção, limpeza e higienização.">
   <title>Produtos — OilBras Fluidos Industriais</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/responsive.css">
+  <style>
+    .linha-cat{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;padding:60px 0;border-bottom:1px solid #E2E8F0;}
+    .linha-cat:last-child{border-bottom:none;}
+    .linha-num{font-size:52px;font-weight:800;color:rgba(255,107,0,0.12);line-height:1;margin-bottom:4px;}
+    .linha-nome{font-size:24px;font-weight:700;color:var(--dark);margin:0 0 12px;}
+    .linha-nome a{color:var(--dark);text-decoration:none;}
+    .linha-nome a:hover{color:var(--accent);}
+    .linha-desc{font-size:15px;color:#4A5568;line-height:1.8;margin-bottom:24px;}
+    .linha-img{background:#E8EDF2;border-radius:14px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#A0AEC0;font-size:13px;border:1px dashed #CBD5E0;}
+    @media(max-width:768px){.linha-cat{grid-template-columns:1fr;gap:24px;}.linha-img{display:none;}}
+  </style>
 </head>
 <body>
 
 <nav class="navbar" id="navbar">
   <div class="navbar-inner">
     <a href="../index.html" class="navbar-logo">
-      <svg class="logo-icon" viewBox="0 0 40 48" fill="none">
-        <path d="M20 3C20 3 3 21 3 31C3 40.4 10.7 46 20 46C29.3 46 37 40.4 37 31C37 21 20 3 20 3Z" fill="#FF6B00"/>
-        <ellipse cx="14" cy="27" rx="4" ry="5.5" fill="rgba(255,255,255,0.22)" transform="rotate(-20 14 27)"/>
-      </svg>
+      <svg class="logo-icon" viewBox="0 0 40 48" fill="none"><path d="M20 3C20 3 3 21 3 31C3 40.4 10.7 46 20 46C29.3 46 37 40.4 37 31C37 21 20 3 20 3Z" fill="#FF6B00"/><ellipse cx="14" cy="27" rx="4" ry="5.5" fill="rgba(255,255,255,0.22)" transform="rotate(-20 14 27)"/></svg>
       <div class="logo-text"><span class="logo-name">OilBras</span><span class="logo-sub">Fluidos Industriais</span></div>
     </a>
     <ul class="navbar-nav" id="nav-menu">
@@ -31,84 +39,91 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="page-hero">
-  <svg class="page-hero-deco" viewBox="0 0 200 240" fill="white" aria-hidden="true">
-    <path d="M100 10C100 10 10 90 10 145C10 197 50 230 100 230C150 230 190 197 190 145C190 90 100 10 100 10Z"/>
-  </svg>
+  <svg class="page-hero-deco" viewBox="0 0 200 240" fill="white" aria-hidden="true"><path d="M100 10C100 10 10 90 10 145C10 197 50 230 100 230C150 230 190 197 190 145C190 90 100 10 100 10Z"/></svg>
   <div class="container">
     <span class="section-tag">Nosso Portfólio</span>
     <h1 class="page-hero-title">Soluções completas para toda a operação industrial</h1>
-    <p class="page-hero-sub">Cinco linhas de produtos desenvolvidas para diferentes processos, materiais e necessidades.</p>
+    <p class="page-hero-sub">Cinco linhas de produtos desenvolvidas para cada etapa do processo — da usinagem à higienização.</p>
   </div>
 </section>
 
-<!-- CATÁLOGO -->
-<section class="section-dark">
+<section class="section-light" style="padding:80px 0;">
   <div class="container">
-    <div class="section-header center">
-      <span class="section-tag fade-in">Linhas de Produto</span>
-      <h2 class="section-title fade-in fd-1">Um produto para cada etapa do seu processo</h2>
-      <p class="section-subtitle fade-in fd-2">Desenvolvemos formulações específicas para garantir o máximo rendimento em cada aplicação.</p>
+
+    <!-- Usinagem de Metais -->
+    <div class="linha-cat fade-in">
+      <div>
+        <div class="linha-num">01</div>
+        <h2 class="linha-nome"><a href="usinagem.html">Usinagem de Metais</a></h2>
+        <p class="linha-desc">Fluidos de corte, refrigeração e lubrificação para tornos, fresas, furadeiras e centros de usinagem. Disponíveis em versões sintéticas, semissintéticas, de base vegetal, integrais e minerais solúveis para operações de leve a severa intensidade.</p>
+        <a href="usinagem.html" class="btn btn-primary">
+          Ver produtos
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="linha-img">Imagem em breve</div>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:24px;">
-      <!-- Usinagem -->
-      <article class="prod-card fade-in fd-1">
-        <div class="prod-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-        </div>
-        <h3 class="prod-title">Usinagem de Metais</h3>
-        <p class="prod-desc">Fluidos de corte solúveis e integrais, óleos de usinagem, refrigerantes e lubrificantes para tornos, fresas, furadeiras e centros de usinagem.</p>
-        <a href="usinagem.html" class="prod-link">Ver detalhes <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </article>
-
-      <!-- Estampagem -->
-      <article class="prod-card fade-in fd-2">
-        <div class="prod-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="4" rx="1"/><rect x="3" y="17" width="18" height="4" rx="1"/><path d="M12 7v10M8 10l4-3 4 3M8 14l4 3 4-3"/></svg>
-        </div>
-        <h3 class="prod-title">Estampagem e Repuxo</h3>
-        <p class="prod-desc">Óleos e emulsões para estampagem profunda, repuxo, dobramento e conformação de chapas metálicas com alta proteção de matrizes.</p>
-        <a href="estampagem.html" class="prod-link">Ver detalhes <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </article>
-
-      <!-- Proteção -->
-      <article class="prod-card fade-in fd-3">
-        <div class="prod-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h3 class="prod-title">Proteção Industrial</h3>
-        <p class="prod-desc">Anticorrosivos, inibidores de oxidação e protetores para equipamentos em estoque, transporte e operação contínua.</p>
-        <a href="outras-solucoes.html" class="prod-link">Ver detalhes <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </article>
+    <!-- Estampagem e Repuxo -->
+    <div class="linha-cat fade-in fd-1">
+      <div>
+        <div class="linha-num">02</div>
+        <h2 class="linha-nome"><a href="estampagem.html">Estampagem e Repuxo de Metais</a></h2>
+        <p class="linha-desc">Fluidos vegetais e semissintéticos para conformação de chapas metálicas com alta lubricidade, proteção de moldes e acabamento superficial superior. Indicados para operações leves a profundas em ferrosos e não ferrosos.</p>
+        <a href="estampagem.html" class="btn btn-primary">
+          Ver produtos
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="linha-img">Imagem em breve</div>
     </div>
 
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:816px;margin:0 auto;">
-      <!-- Limpeza -->
-      <article class="prod-card fade-in fd-2">
-        <div class="prod-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C12 2 7 8 7 12a5 5 0 0 0 10 0c0-4-5-10-5-10z"/><path d="M8 17c-1.5 1-2 2-2 3h12c0-1-.5-2-2-3"/></svg>
-        </div>
-        <h3 class="prod-title">Limpeza e Higienização</h3>
-        <p class="prod-desc">Desengraxantes alcalinos e neutros, removedores de óleo e desincrustantes para limpeza de peças, máquinas e superfícies industriais.</p>
-        <a href="outras-solucoes.html" class="prod-link">Ver detalhes <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </article>
-
-      <!-- Especiais -->
-      <article class="prod-card fade-in fd-3">
-        <div class="prod-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l1 6-4 2-4-2 1-6z"/><path d="M8 9l-4 9a2 2 0 0 0 1.8 2.9h12.4A2 2 0 0 0 20 18l-4-9"/><circle cx="12" cy="17" r="1.5" fill="#FF6B00"/></svg>
-        </div>
-        <h3 class="prod-title">Soluções Especiais</h3>
-        <p class="prod-desc">Formulações personalizadas para processos específicos — desenvolvemos junto com o cliente a solução que o mercado ainda não oferece.</p>
-        <a href="outras-solucoes.html" class="prod-link">Ver detalhes <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-      </article>
+    <!-- Proteção e Aditivos -->
+    <div class="linha-cat fade-in fd-2">
+      <div>
+        <div class="linha-num">03</div>
+        <h2 class="linha-nome"><a href="protecao.html">Proteção, Aditivos e Desmoldantes</a></h2>
+        <p class="linha-desc">Anticorrosivos para proteção temporária de superfícies metálicas, aditivos para sistemas industriais e de corte a plasma, desmoldantes para plásticos e borrachas e antirrespingos para soldagem.</p>
+        <a href="protecao.html" class="btn btn-primary">
+          Ver produtos
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="linha-img">Imagem em breve</div>
     </div>
+
+    <!-- Desengraxantes e Preparadores -->
+    <div class="linha-cat fade-in fd-3">
+      <div>
+        <div class="linha-num">04</div>
+        <h2 class="linha-nome"><a href="desengraxantes.html">Desengraxantes e Preparadores de Superfície</a></h2>
+        <p class="linha-desc">Desengraxantes com pH neutro, alcalino e solventes industriais para remoção de óleos, graxas e sujidades. Decapantes, fosfatizantes e passivadores para preparo de superfícies metálicas antes de pintura ou revestimento.</p>
+        <a href="desengraxantes.html" class="btn btn-primary">
+          Ver produtos
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="linha-img">Imagem em breve</div>
+    </div>
+
+    <!-- Higienização -->
+    <div class="linha-cat fade-in fd-4">
+      <div>
+        <div class="linha-num">05</div>
+        <h2 class="linha-nome"><a href="higienizacao.html">Higienização</a></h2>
+        <p class="linha-desc">Linha completa para limpeza, desinfecção e sanitização de ambientes, superfícies e equipamentos. Detergentes, desinfetantes, álcool gel, odorizantes e produtos para conservação de pisos e móveis.</p>
+        <a href="higienizacao.html" class="btn btn-primary">
+          Ver produtos
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="linha-img">Imagem em breve</div>
+    </div>
+
   </div>
 </section>
 
-<!-- CTA -->
 <section class="cta-banner">
   <div class="container">
     <div class="cta-inner fade-in">
@@ -127,7 +142,7 @@
         <p class="footer-about">Excelência em cada gota. Desde 2005 ao lado da indústria.</p>
       </div>
       <div><p class="footer-heading">Navegação</p><ul class="footer-links"><li><a href="../index.html">Home</a></li><li><a href="quem-somos.html">Quem Somos</a></li><li><a href="produtos.html">Produtos</a></li><li><a href="socioambiental.html">Socioambiental</a></li><li><a href="blog.html">Blog</a></li><li><a href="contato.html">Contato</a></li></ul></div>
-      <div><p class="footer-heading">Soluções</p><ul class="footer-links"><li><a href="usinagem.html">Usinagem de Metais</a></li><li><a href="estampagem.html">Estampagem e Repuxo</a></li><li><a href="outras-solucoes.html">Proteção Industrial</a></li><li><a href="outras-solucoes.html">Limpeza Industrial</a></li></ul></div>
+      <div><p class="footer-heading">Produtos</p><ul class="footer-links"><li><a href="usinagem.html">Usinagem de Metais</a></li><li><a href="estampagem.html">Estampagem e Repuxo</a></li><li><a href="protecao.html">Proteção e Aditivos</a></li><li><a href="desengraxantes.html">Desengraxantes</a></li><li><a href="higienizacao.html">Higienização</a></li></ul></div>
       <div><p class="footer-heading">Contato</p><ul class="footer-contact-list"><li class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.4a16 16 0 0 0 5.67 5.67l1.77-1.77a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+555533758333">(55) 3375-8333</a></li><li class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF6B00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:oilbras@oilbras.com.br">oilbras@oilbras.com.br</a></li></ul></div>
     </div>
     <div class="footer-bottom"><div class="footer-bottom-inner"><span>© 2026 OilBras. Todos os direitos reservados.</span><span>Desenvolvido por <a href="#">Adriano Poeschke</a></span></div></div>
