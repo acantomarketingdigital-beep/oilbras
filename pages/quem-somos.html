@@ -10,7 +10,7 @@
   <style>
     .vals-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
     .team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:40px;align-items:center;}
-    @media(max-width:768px){.vals-grid{grid-template-columns:1fr 1fr;}.team-grid{grid-template-columns:1fr;}}
+    @media(max-width:768px){.vals-grid{grid-template-columns:1fr 1fr;}.team-grid{grid-template-columns:1fr;}#estrutura-img{display:none;}}
     @media(max-width:480px){.vals-grid{grid-template-columns:1fr;}}
   </style>
 </head>
@@ -82,16 +82,37 @@
   </div>
 </section>
 
-<!-- PROPÓSITO -->
-<section class="section-dark">
+<!-- ESTRUTURA -->
+<section class="section-light">
   <div class="container">
-    <div style="max-width:760px;margin:0 auto;text-align:center;">
-      <span class="section-tag fade-in">Estrutura que sustenta cada entrega</span>
-      <h2 class="section-title fade-in fd-1">Contamos com estrutura operacional preparada para atender diferentes demandas industriais com agilidade, organização e compromisso técnico. Nossa atuação combina atendimento próximo, eficiência logística e foco constante na qualidade em cada etapa do processo.</h2>
-      <span class="section-tag fade-in" style="margin-top:32px;display:inline-block;">Atendimento técnico</span>
-      <p class="fade-in fd-2" style="font-size:17px;color:#A0AEC0;line-height:1.85;margin-top:16px;">
-        Suporte próximo para entender cada necessidade.
-      </p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+      <div>
+        <span class="section-tag fade-in">Estrutura que sustenta cada entrega</span>
+        <p class="fade-in fd-1" style="font-size:16px;color:#4A5568;line-height:1.85;margin:16px 0 32px;">
+          Contamos com estrutura operacional preparada para atender diferentes demandas industriais com agilidade, organização e compromisso técnico. Nossa atuação combina atendimento próximo, eficiência logística e foco constante na qualidade em cada etapa do processo.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <div class="fade-in fd-2">
+            <strong style="font-size:17px;color:var(--dark);display:block;margin-bottom:4px;">Atendimento técnico</strong>
+            <span style="font-size:15px;color:#4A5568;">Suporte próximo para entender cada necessidade.</span>
+          </div>
+          <div class="fade-in fd-3">
+            <strong style="font-size:17px;color:var(--dark);display:block;margin-bottom:4px;">Agilidade operacional</strong>
+            <span style="font-size:15px;color:#4A5568;">Processos organizados para respostas rápidas.</span>
+          </div>
+          <div class="fade-in fd-4">
+            <strong style="font-size:17px;color:var(--dark);display:block;margin-bottom:4px;">Compromisso com qualidade</strong>
+            <span style="font-size:15px;color:#4A5568;">Rigor e atenção em cada entrega.</span>
+          </div>
+          <div class="fade-in fd-5">
+            <strong style="font-size:17px;color:var(--dark);display:block;margin-bottom:4px;">Atendimento nacional</strong>
+            <span style="font-size:15px;color:#4A5568;">Capacidade para atender clientes em diferentes regiões.</span>
+          </div>
+        </div>
+      </div>
+      <div class="fade-in fd-2" id="estrutura-img" style="background:#E2E8F0;border-radius:16px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;">
+        <span style="color:#A0AEC0;font-size:14px;">Imagem em breve</span>
+      </div>
     </div>
   </div>
 </section>
