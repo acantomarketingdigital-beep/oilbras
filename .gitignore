@@ -1,0 +1,7 @@
+# Pasta de configuração do editor
+.claude/
+
+# Vídeos (muito grandes para o GitHub — hospedar via CDN ou servidor)
+videos/*.mp4
+videos/*.mov
+videos/*.avi
