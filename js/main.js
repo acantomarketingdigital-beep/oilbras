@@ -171,4 +171,38 @@
     });
   }
 
+  /* ---- Blog preview: rotação de artigos por página ---- */
+  var bpg = document.getElementById('bpg');
+  if (bpg) {
+    var articles = [
+      {img:'usinagem',         cat:'Usinagem',        title:'Como escolher o fluido de corte ideal para sua operação'},
+      {img:'manutencao',       cat:'Manutenção',      title:'Vida útil dos fluidos industriais: quando trocar e por quê'},
+      {img:'estampagem',       cat:'Produtividade',   title:'Fluidos vegetais na estampagem: eficiência com responsabilidade'},
+      {img:'sustentabilidade', cat:'Sustentabilidade',title:'Fluidos biodegradáveis: mito ou realidade?'},
+      {img:'gestao',           cat:'Gestão',          title:'Como calcular o custo real do fluido de corte'},
+      {img:'qualidade',        cat:'Qualidade',       title:'Controle de concentração: por que monitorar o fluido?'}
+    ];
+    var pageMap = {
+      'index':0,'quem-somos':1,'produtos':2,'usinagem':3,
+      'estampagem':4,'protecao':5,'desengraxantes':6,
+      'higienizacao':7,'socioambiental':8,'contato':9,'outras-solucoes':10
+    };
+    var inPages = location.pathname.indexOf('/pages/') !== -1;
+    var slug    = location.pathname.replace(/.*\//, '').replace('.html','') || 'index';
+    var idx     = pageMap[slug] !== undefined ? pageMap[slug] : 0;
+    var picks   = [idx % 6, (idx + 2) % 6, (idx + 4) % 6];
+    var imgPfx  = inPages ? '../images/blog/' : 'images/blog/';
+    var blogHref= inPages ? 'blog.html' : 'pages/blog.html';
+
+    bpg.innerHTML = picks.map(function(i) {
+      var a = articles[i];
+      return '<a href="' + blogHref + '" style="text-decoration:none;display:block;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.07);">' +
+        '<div style="height:160px;overflow:hidden;"><img src="' + imgPfx + a.img + '.png" alt="' + a.cat + '" style="width:100%;height:100%;object-fit:cover;display:block;"></div>' +
+        '<div style="padding:20px;">' +
+        '<span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#FF6B00;">' + a.cat + '</span>' +
+        '<p style="font-size:15px;font-weight:600;color:#0D1B2A;margin:8px 0 0;line-height:1.5;">' + a.title + '</p>' +
+        '</div></a>';
+    }).join('');
+  }
+
 })();
