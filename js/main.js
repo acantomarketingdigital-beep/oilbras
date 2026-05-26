@@ -205,4 +205,26 @@
     }).join('');
   }
 
+  /* ---- Imagens de produtos: carrega de images/produtos/[slug].png ---- */
+  document.querySelectorAll('.produto-item').forEach(function(item) {
+    var nomeEl = item.querySelector('.produto-nome');
+    var imgDiv  = item.querySelector('.produto-img');
+    if (!nomeEl || !imgDiv) return;
+    var slug = nomeEl.textContent.trim()
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9-]/g, '');
+    var prefix = location.pathname.indexOf('/pages/') !== -1 ? '../' : '';
+    var img = document.createElement('img');
+    img.alt = nomeEl.textContent.trim();
+    img.style.cssText = 'width:100%;height:100%;object-fit:contain;display:block;';
+    img.onerror = function() {
+      imgDiv.innerHTML = '';
+      imgDiv.textContent = 'Imagem em breve';
+    };
+    img.src = prefix + 'images/produtos/' + slug + '.png';
+    imgDiv.innerHTML = '';
+    imgDiv.appendChild(img);
+  });
+
 })();

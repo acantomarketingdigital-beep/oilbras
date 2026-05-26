@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — OilBras Blog</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --accent: #FF6B00;
+      --dark:   #0D1B2A;
+      --gray:   #64748B;
+      --light:  #F8FAFC;
+      --border: #E2E8F0;
+      --red:    #EF4444;
+      --green:  #10B981;
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--light); color: var(--dark); }
+
+    /* ── LOGIN ─────────────────────────────────── */
+    #screen-login {
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh; background: var(--dark);
+    }
+    .login-box {
+      background: #fff; border-radius: 18px; padding: 48px 40px;
+      width: 100%; max-width: 400px; box-shadow: 0 24px 80px rgba(0,0,0,.35);
+    }
+    .login-logo { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; }
+    .login-logo svg { width: 34px; height: 42px; }
+    .login-brand-name { font-size: 20px; font-weight: 800; color: var(--dark); line-height: 1; }
+    .login-brand-sub  { font-size: 12px; color: var(--gray); }
+    .login-head { font-size: 16px; font-weight: 700; margin-bottom: 24px; color: var(--dark); }
+
+    /* ── FORM ELEMENTS ─────────────────────────── */
+    .field { margin-bottom: 16px; }
+    label { display: block; font-size: 12px; font-weight: 700; color: var(--dark); margin-bottom: 5px; text-transform: uppercase; letter-spacing: .05em; }
+    input[type=email], input[type=password], input[type=text],
+    input[type=url], input[type=date], textarea, select {
+      width: 100%; padding: 10px 14px; border: 1.5px solid var(--border);
+      border-radius: 8px; font-size: 14px; font-family: inherit;
+      outline: none; transition: border-color .2s; color: var(--dark); background: #fff;
+    }
+    input:focus, textarea:focus, select:focus { border-color: var(--accent); }
+    textarea { resize: vertical; line-height: 1.6; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media(max-width: 540px) { .field-row { grid-template-columns: 1fr; } }
+
+    .checkbox-label { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--dark); }
+    .checkbox-label input[type=checkbox] { width: 16px; height: 16px; accent-color: var(--accent); }
+
+    /* ── BUTTONS ───────────────────────────────── */
+    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; font-family: inherit; border: none; cursor: pointer; transition: all .2s; text-decoration: none; }
+    .btn-primary  { background: var(--accent); color: #fff; }
+    .btn-primary:hover  { background: #e55d00; }
+    .btn-outline  { background: transparent; border: 1.5px solid var(--border); color: var(--dark); }
+    .btn-outline:hover  { border-color: #94a3b8; }
+    .btn-danger   { background: #FEE2E2; color: var(--red); border: none; }
+    .btn-danger:hover   { background: var(--red); color: #fff; }
+    .btn-sm  { padding: 6px 12px; font-size: 12px; }
+    .btn-full { width: 100%; justify-content: center; }
+    .btn:disabled { opacity: .5; cursor: not-allowed; }
+
+    /* ── ADMIN LAYOUT ──────────────────────────── */
+    #screen-admin { display: none; min-height: 100vh; }
+    .admin-nav {
+      background: var(--dark); color: #fff; height: 60px; padding: 0 28px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 10;
+    }
+    .admin-nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; }
+    .admin-nav-logo svg { width: 22px; height: 28px; }
+    .admin-body { max-width: 1080px; margin: 0 auto; padding: 36px 24px; }
+
+    /* ── POST LIST ─────────────────────────────── */
+    .list-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .list-header h1 { font-size: 20px; font-weight: 700; }
+    .post-table { background: #fff; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
+    .post-row {
+      display: grid; grid-template-columns: 1fr 100px 90px 72px;
+      align-items: center; gap: 16px; padding: 14px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .post-row:last-child { border-bottom: none; }
+    .post-row-title { font-size: 14px; font-weight: 600; }
+    .post-row-cat { font-size: 11px; font-weight: 700; color: var(--accent); background: #FFF3E8; padding: 3px 8px; border-radius: 20px; text-align: center; }
+    .post-status-dot { font-size: 12px; font-weight: 600; }
+    .dot-pub   { color: var(--green); }
+    .dot-draft { color: var(--gray); }
+    .empty-state { padding: 56px; text-align: center; color: var(--gray); font-size: 14px; }
+
+    @media(max-width: 600px) {
+      .post-row { grid-template-columns: 1fr auto; }
+      .post-row-cat, .post-status-dot { display: none; }
+    }
+
+    /* ── OVERLAY / FORM PANEL ──────────────────── */
+    .overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,.45); z-index: 100;
+      display: none; align-items: flex-start; justify-content: center;
+      padding: 32px 16px; overflow-y: auto;
+    }
+    .overlay.open { display: flex; }
+    .form-panel {
+      background: #fff; border-radius: 16px; padding: 32px;
+      width: 100%; max-width: 680px;
+      box-shadow: 0 24px 80px rgba(0,0,0,.25);
+    }
+    .form-panel-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+    .form-panel-title { font-size: 18px; font-weight: 700; }
+    .form-actions {
+      display: flex; gap: 10px; justify-content: flex-end;
+      margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border);
+    }
+    .img-hint { font-size: 11px; color: var(--gray); margin-top: 5px; }
+    .img-preview { width: 100%; height: 140px; border-radius: 8px; object-fit: cover; display: none; margin-top: 8px; }
+
+    /* ── TOAST ─────────────────────────────────── */
+    #toast {
+      position: fixed; bottom: 24px; right: 24px;
+      padding: 12px 20px; border-radius: 10px; font-size: 14px; font-weight: 600;
+      z-index: 999; display: none; box-shadow: 0 4px 20px rgba(0,0,0,.15);
+    }
+    #toast.ok  { background: #D1FAE5; color: #065F46; }
+    #toast.err { background: #FEE2E2; color: #7F1D1D; }
+
+    #login-err { color: var(--red); font-size: 13px; margin-bottom: 12px; display: none; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     LOGIN
+══════════════════════════════════════════════════════ -->
+<div id="screen-login">
+  <div class="login-box">
+    <div class="login-logo">
+      <svg viewBox="0 0 40 48" fill="none">
+        <path d="M20 3C20 3 3 21 3 31C3 40.4 10.7 46 20 46C29.3 46 37 40.4 37 31C37 21 20 3 20 3Z" fill="#FF6B00"/>
+        <ellipse cx="14" cy="27" rx="4" ry="5.5" fill="rgba(255,255,255,0.22)" transform="rotate(-20 14 27)"/>
+      </svg>
+      <div>
+        <div class="login-brand-name">OilBras</div>
+        <div class="login-brand-sub">Painel do Blog</div>
+      </div>
+    </div>
+    <p class="login-head">Entrar na sua conta</p>
+    <form id="form-login">
+      <div class="field">
+        <label for="inp-email">E-mail</label>
+        <input type="email" id="inp-email" placeholder="seu@email.com" autocomplete="email" required>
+      </div>
+      <div class="field">
+        <label for="inp-pass">Senha</label>
+        <input type="password" id="inp-pass" placeholder="••••••••" autocomplete="current-password" required>
+      </div>
+      <div id="login-err"></div>
+      <button type="submit" class="btn btn-primary btn-full" id="btn-login">Entrar</button>
+    </form>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     ADMIN
+══════════════════════════════════════════════════════ -->
+<div id="screen-admin">
+  <nav class="admin-nav">
+    <div class="admin-nav-logo">
+      <svg viewBox="0 0 40 48" fill="none">
+        <path d="M20 3C20 3 3 21 3 31C3 40.4 10.7 46 20 46C29.3 46 37 40.4 37 31C37 21 20 3 20 3Z" fill="#FF6B00"/>
+        <ellipse cx="14" cy="27" rx="4" ry="5.5" fill="rgba(255,255,255,0.22)" transform="rotate(-20 14 27)"/>
+      </svg>
+      Blog Admin
+    </div>
+    <button id="btn-logout" class="btn btn-sm"
+      style="background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.15);">
+      Sair
+    </button>
+  </nav>
+
+  <div class="admin-body">
+    <div class="list-header">
+      <h1>Posts</h1>
+      <button id="btn-new" class="btn btn-primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+        Novo Post
+      </button>
+    </div>
+    <div class="post-table">
+      <div id="post-list"><div class="empty-state">Carregando...</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════
+     FORM OVERLAY
+══════════════════════════════════════════════════════ -->
+<div class="overlay" id="overlay">
+  <div class="form-panel">
+    <div class="form-panel-head">
+      <div class="form-panel-title" id="form-label">Novo Post</div>
+      <button id="btn-close" class="btn btn-outline btn-sm">✕</button>
+    </div>
+
+    <form id="form-post" autocomplete="off">
+      <input type="hidden" id="f-id">
+
+      <div class="field">
+        <label for="f-title">Título *</label>
+        <input type="text" id="f-title" placeholder="Ex: Como escolher o fluido ideal" required>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="f-cat">Categoria *</label>
+          <select id="f-cat" required>
+            <option value="">Selecionar...</option>
+            <option>Usinagem</option>
+            <option>Estampagem</option>
+            <option>Manutenção</option>
+            <option>Produtividade</option>
+            <option>Sustentabilidade</option>
+            <option>Gestão</option>
+            <option>Qualidade</option>
+            <option>Notícias</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-date">Data</label>
+          <input type="date" id="f-date">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="f-img">URL da imagem de capa</label>
+        <input type="url" id="f-img" placeholder="https://..." oninput="previewImg(this.value)">
+        <p class="img-hint">Dica: suba a imagem em <strong>imgbb.com</strong> (gratuito) e cole o link aqui.</p>
+        <img id="img-preview" class="img-preview" alt="Preview da capa">
+      </div>
+
+      <div class="field">
+        <label for="f-excerpt">Resumo <small style="font-weight:400;text-transform:none">(exibido nos cards do blog)</small></label>
+        <textarea id="f-excerpt" rows="2" placeholder="Uma ou duas frases descrevendo o artigo..."></textarea>
+      </div>
+
+      <div class="field">
+        <label for="f-content">Conteúdo completo</label>
+        <textarea id="f-content" rows="12" placeholder="Texto completo do artigo..."></textarea>
+      </div>
+
+      <div class="field">
+        <label class="checkbox-label">
+          <input type="checkbox" id="f-published" checked>
+          Publicar (visível no site)
+        </label>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" id="btn-delete" class="btn btn-danger" style="display:none;margin-right:auto;">
+          Excluir post
+        </button>
+        <button type="button" id="btn-cancel" class="btn btn-outline">Cancelar</button>
+        <button type="submit" id="btn-save" class="btn btn-primary">Salvar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="js/firebase-config.js"></script>
+
+<script>
+(function () {
+  // ── INIT ─────────────────────────────────────────────────────────
+  firebase.initializeApp(window.FIREBASE_CONFIG);
+  var auth = firebase.auth();
+  var db   = firebase.firestore();
+
+  var editingId = null;
+
+  // ── AUTH STATE ───────────────────────────────────────────────────
+  auth.onAuthStateChanged(function (user) {
+    document.getElementById('screen-login').style.display = user ? 'none' : 'flex';
+    document.getElementById('screen-admin').style.display = user ? 'block' : 'none';
+    if (user) loadPosts();
+  });
+
+  // ── LOGIN ────────────────────────────────────────────────────────
+  document.getElementById('form-login').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var errEl = document.getElementById('login-err');
+    var btn   = document.getElementById('btn-login');
+    errEl.style.display = 'none';
+    btn.disabled = true; btn.textContent = 'Entrando...';
+    auth.signInWithEmailAndPassword(
+      document.getElementById('inp-email').value,
+      document.getElementById('inp-pass').value
+    ).catch(function () {
+      errEl.textContent = 'E-mail ou senha incorretos.';
+      errEl.style.display = 'block';
+      btn.disabled = false; btn.textContent = 'Entrar';
+    });
+  });
+
+  document.getElementById('btn-logout').addEventListener('click', function () {
+    auth.signOut();
+  });
+
+  // ── LOAD POSTS ───────────────────────────────────────────────────
+  function loadPosts() {
+    var list = document.getElementById('post-list');
+    list.innerHTML = '<div class="empty-state">Carregando...</div>';
+    db.collection('posts').orderBy('createdAt', 'desc').get().then(function (snap) {
+      if (snap.empty) {
+        list.innerHTML = '<div class="empty-state">Nenhum post ainda — clique em <strong>Novo Post</strong> para começar.</div>';
+        return;
+      }
+      list.innerHTML = snap.docs.map(function (doc) {
+        var p = doc.data();
+        var pub = p.published
+          ? '<span class="post-status-dot dot-pub">● Publicado</span>'
+          : '<span class="post-status-dot dot-draft">○ Rascunho</span>';
+        return '<div class="post-row">' +
+          '<div class="post-row-title">' + esc(p.title) + '</div>' +
+          '<span class="post-row-cat">'  + esc(p.category) + '</span>' +
+          pub +
+          '<button class="btn btn-outline btn-sm" onclick="openEdit(\'' + doc.id + '\')">Editar</button>' +
+          '</div>';
+      }).join('');
+    }).catch(function (err) {
+      list.innerHTML = '<div class="empty-state" style="color:#EF4444;">Erro: ' + err.message + '</div>';
+    });
+  }
+
+  // ── OPEN CREATE ──────────────────────────────────────────────────
+  document.getElementById('btn-new').addEventListener('click', function () {
+    editingId = null;
+    document.getElementById('form-label').textContent = 'Novo Post';
+    document.getElementById('form-post').reset();
+    document.getElementById('f-id').value = '';
+    document.getElementById('f-published').checked = true;
+    document.getElementById('f-date').value = new Date().toISOString().slice(0, 10);
+    document.getElementById('btn-delete').style.display = 'none';
+    document.getElementById('img-preview').style.display = 'none';
+    openOverlay();
+  });
+
+  // ── OPEN EDIT ────────────────────────────────────────────────────
+  window.openEdit = function (id) {
+    editingId = id;
+    document.getElementById('form-label').textContent = 'Editar Post';
+    document.getElementById('btn-delete').style.display = 'inline-flex';
+    db.collection('posts').doc(id).get().then(function (doc) {
+      var p = doc.data();
+      document.getElementById('f-id').value       = id;
+      document.getElementById('f-title').value    = p.title    || '';
+      document.getElementById('f-cat').value      = p.category || '';
+      document.getElementById('f-date').value     = p.date     || '';
+      document.getElementById('f-img').value      = p.imageUrl || '';
+      document.getElementById('f-excerpt').value  = p.excerpt  || '';
+      document.getElementById('f-content').value  = p.content  || '';
+      document.getElementById('f-published').checked = !!p.published;
+      previewImg(p.imageUrl || '');
+      openOverlay();
+    });
+  };
+
+  // ── SAVE ─────────────────────────────────────────────────────────
+  document.getElementById('form-post').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = document.getElementById('btn-save');
+    btn.disabled = true; btn.textContent = 'Salvando...';
+
+    var content = document.getElementById('f-content').value.trim();
+    var words   = content.split(/\s+/).filter(Boolean).length;
+    var readMin = Math.max(1, Math.round(words / 200));
+
+    var data = {
+      title:    document.getElementById('f-title').value.trim(),
+      category: document.getElementById('f-cat').value,
+      date:     document.getElementById('f-date').value,
+      imageUrl: document.getElementById('f-img').value.trim(),
+      excerpt:  document.getElementById('f-excerpt').value.trim(),
+      content:  content,
+      readMin:  readMin,
+      published: document.getElementById('f-published').checked,
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+    };
+
+    var op = editingId
+      ? db.collection('posts').doc(editingId).update(data)
+      : db.collection('posts').add(Object.assign(data, { createdAt: firebase.firestore.FieldValue.serverTimestamp() }));
+
+    op.then(function () {
+      closeOverlay();
+      loadPosts();
+      toast('Post salvo!', 'ok');
+    }).catch(function (err) {
+      toast('Erro: ' + err.message, 'err');
+    }).finally(function () {
+      btn.disabled = false; btn.textContent = 'Salvar';
+    });
+  });
+
+  // ── DELETE ───────────────────────────────────────────────────────
+  document.getElementById('btn-delete').addEventListener('click', function () {
+    if (!confirm('Excluir este post? Esta ação não pode ser desfeita.')) return;
+    db.collection('posts').doc(editingId).delete().then(function () {
+      closeOverlay();
+      loadPosts();
+      toast('Post excluído.', 'ok');
+    });
+  });
+
+  // ── OVERLAY ──────────────────────────────────────────────────────
+  function openOverlay()  { document.getElementById('overlay').classList.add('open'); }
+  function closeOverlay() { document.getElementById('overlay').classList.remove('open'); }
+  ['btn-close', 'btn-cancel'].forEach(function (id) {
+    document.getElementById(id).addEventListener('click', closeOverlay);
+  });
+  document.getElementById('overlay').addEventListener('click', function (e) {
+    if (e.target === this) closeOverlay();
+  });
+
+  // ── IMAGE PREVIEW ─────────────────────────────────────────────────
+  window.previewImg = function (url) {
+    var img = document.getElementById('img-preview');
+    if (url && url.startsWith('http')) {
+      img.src = url; img.style.display = 'block';
+    } else {
+      img.style.display = 'none';
+    }
+  };
+
+  // ── TOAST ─────────────────────────────────────────────────────────
+  function toast(msg, type) {
+    var el = document.getElementById('toast');
+    el.textContent = msg; el.className = type; el.style.display = 'block';
+    setTimeout(function () { el.style.display = 'none'; }, 3000);
+  }
+
+  function esc(s) {
+    return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+})();
+</script>
+</body>
+</html>

@@ -18,8 +18,7 @@
 <nav class="navbar" id="navbar">
   <div class="navbar-inner">
     <a href="../index.html" class="navbar-logo">
-      <svg class="logo-icon" viewBox="0 0 40 48" fill="none"><path d="M20 3C20 3 3 21 3 31C3 40.4 10.7 46 20 46C29.3 46 37 40.4 37 31C37 21 20 3 20 3Z" fill="#FF6B00"/><ellipse cx="14" cy="27" rx="4" ry="5.5" fill="rgba(255,255,255,0.22)" transform="rotate(-20 14 27)"/></svg>
-      <div class="logo-text"><span class="logo-name">OilBras</span><span class="logo-sub">Fluidos Industriais</span></div>
+      <img src="../images/logo.jpeg" alt="OilBras" style="height:46px;width:auto;display:block;">
     </a>
     <ul class="navbar-nav" id="nav-menu">
       <li><a href="../index.html"       class="nav-link">Home</a></li>
@@ -27,6 +26,7 @@
       <li><a href="produtos.html"       class="nav-link">Produtos</a></li>
       <li><a href="socioambiental.html" class="nav-link">Socioambiental</a></li>
       <li><a href="blog.html"           class="nav-link active">Blog</a></li>
+      <li><a href="../catalogo.pdf" target="_blank" rel="noopener" class="nav-link">Cat&aacute;logo</a></li>
       <li><a href="contato.html"        class="nav-link nav-cta">Fale Conosco</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Abrir menu"><span></span><span></span><span></span></button>
@@ -139,5 +139,57 @@
   </div>
 </footer>
 <script src="../js/main.js"></script>
+
+<!-- Firebase: carrega posts dinâmicos quando configurado -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="../js/firebase-config.js"></script>
+<script>
+(function () {
+  var cfg = window.FIREBASE_CONFIG;
+  if (!cfg || cfg.apiKey === 'COLE_AQUI') return; // não configurado — mantém posts estáticos
+
+  try { firebase.app(); } catch(e) { firebase.initializeApp(cfg); }
+  var db = firebase.firestore();
+
+  db.collection('posts')
+    .where('published', '==', true)
+    .orderBy('createdAt', 'desc')
+    .get()
+    .then(function (snap) {
+      if (snap.empty) return; // sem posts no Firebase — mantém estáticos
+
+      var arrow = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+      var clock  = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>';
+      var delays = ['fd-1','fd-2','fd-3'];
+
+      var html = snap.docs.map(function (doc, i) {
+        var p = doc.data();
+        var img = p.imageUrl
+          ? '<div class="blog-img-inner" style="padding:0;"><img src="' + p.imageUrl + '" alt="' + esc(p.category) + '" style="width:100%;height:100%;object-fit:cover;display:block;"></div>'
+          : '<div class="blog-img-inner"></div>';
+        return '<article class="blog-card fade-in ' + delays[i % 3] + '">' +
+          '<div class="blog-img">' + img + '</div>' +
+          '<div class="blog-body">' +
+            '<span class="blog-cat">' + esc(p.category) + '</span>' +
+            '<h3 class="blog-title">' + esc(p.title) + '</h3>' +
+            '<p class="blog-excerpt">' + esc(p.excerpt) + '</p>' +
+            '<div class="blog-foot">' +
+              '<span class="blog-time">' + clock + (p.readMin || '5') + ' min</span>' +
+              '<span class="blog-link">Ler mais ' + arrow + '</span>' +
+            '</div>' +
+          '</div>' +
+        '</article>';
+      }).join('');
+
+      document.querySelector('.blog-full-grid').innerHTML = html;
+    })
+    .catch(function () {}); // falha silenciosa — mantém estáticos
+
+  function esc(s) {
+    return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+})();
+</script>
 </body>
 </html>

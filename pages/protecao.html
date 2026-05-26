@@ -19,8 +19,8 @@
     .produto-item:last-child{border-bottom:none;}
     .produto-nome{font-size:19px;font-weight:700;color:var(--dark);margin-bottom:10px;}
     .produto-desc{font-size:15px;color:#4A5568;line-height:1.75;}
-    .produto-img{background:#E8EDF2;border-radius:12px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#A0AEC0;font-size:13px;border:1px dashed #CBD5E0;}
-    @media(max-width:768px){.produto-item{grid-template-columns:1fr;}.produto-img{display:none;}}
+    .produto-img{background:#E8EDF2;border-radius:12px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#A0AEC0;font-size:13px;border:1px dashed #CBD5E0;overflow:hidden;}
+    @media(max-width:768px){.produto-item{grid-template-columns:1fr;}}
   </style>
 </head>
 <body>
@@ -28,8 +28,7 @@
 <nav class="navbar" id="navbar">
   <div class="navbar-inner">
     <a href="../index.html" class="navbar-logo">
-      <svg class="logo-icon" viewBox="0 0 40 48" fill="none"><path d="M20 3C20 3 3 21 3 31C3 40.4 10.7 46 20 46C29.3 46 37 40.4 37 31C37 21 20 3 20 3Z" fill="#FF6B00"/><ellipse cx="14" cy="27" rx="4" ry="5.5" fill="rgba(255,255,255,0.22)" transform="rotate(-20 14 27)"/></svg>
-      <div class="logo-text"><span class="logo-name">OilBras</span><span class="logo-sub">Fluidos Industriais</span></div>
+      <img src="../images/logo.jpeg" alt="OilBras" style="height:46px;width:auto;display:block;">
     </a>
     <ul class="navbar-nav" id="nav-menu">
       <li><a href="../index.html" class="nav-link">Home</a></li>
@@ -37,6 +36,8 @@
       <li><a href="produtos.html" class="nav-link active">Produtos</a></li>
       <li><a href="socioambiental.html" class="nav-link">Socioambiental</a></li>
       <li><a href="blog.html" class="nav-link">Blog</a></li>
+      <li><a href="../catalogo.pdf" target="_blank" rel="noopener" class="nav-link">Cat&aacute;logo</a></li>
+      <li><a href="../catalogo.pdf" target="_blank" rel="noopener" class="nav-link">Cat&aacute;logo</a></li>
       <li><a href="contato.html" class="nav-link nav-cta">Fale Conosco</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Abrir menu"><span></span><span></span><span></span></button>
