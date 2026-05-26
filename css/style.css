@@ -781,7 +781,7 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
    ============================================================ */
 .cta-banner {
   padding: 80px 0;
-  background: var(--accent);
+  background: var(--darker);
   position: relative;
   overflow: hidden;
   text-align: center;
@@ -914,15 +914,16 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
    RODAPÉ
    ============================================================ */
 .footer {
-  background: var(--darker);
+  background: var(--white);
   padding: 72px 0 0;
+  border-top: 1px solid rgba(0,0,0,0.07);
 }
 .footer-grid {
   display: grid;
   grid-template-columns: 1.8fr 1fr 1fr 1fr;
   gap: 48px;
   padding-bottom: 56px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 .footer-logo {
   display: flex;
@@ -930,17 +931,17 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   gap: 10px;
   margin-bottom: 18px;
 }
-.footer-about { font-size:14px; color:var(--muted); line-height:1.85; max-width:280px; }
+.footer-about { font-size:14px; color:#6B7280; line-height:1.85; max-width:280px; }
 .footer-heading {
   font-family: var(--font-h);
   font-size: 12px; font-weight:700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
-  color: var(--white);
+  color: var(--dark);
   margin-bottom: 20px;
 }
 .footer-links { display:flex; flex-direction:column; gap:10px; }
-.footer-links a { font-size:14px; color:var(--muted); transition:var(--ease); }
+.footer-links a { font-size:14px; color:#4A5568; transition:var(--ease); }
 .footer-links a:hover { color:var(--accent); padding-left:4px; }
 .footer-contact-list { display:flex; flex-direction:column; gap:14px; }
 .footer-contact-item {
@@ -948,22 +949,22 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   align-items: flex-start;
   gap: 10px;
   font-size: 13px;
-  color: var(--muted);
+  color: #4A5568;
   line-height: 1.5;
 }
 .footer-contact-item svg { flex-shrink:0; margin-top:2px; }
-.footer-bottom { padding:20px 0; }
+.footer-bottom { padding:20px 0; background: var(--white); }
 .footer-bottom-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
   font-size: 13px;
-  color: rgba(138,155,176,0.5);
+  color: rgba(0,0,0,0.4);
   flex-wrap: wrap;
   gap: 8px;
 }
 .footer-bottom a { color:var(--accent); transition:var(--ease); }
-.footer-bottom a:hover { color:var(--white); }
+.footer-bottom a:hover { color:var(--dark); }
 
 /* ============================================================
    HERO DE PÁGINA INTERNA
