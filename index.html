@@ -39,7 +39,9 @@
      HERO
      ============================================================ -->
 <section class="hero" id="home" aria-label="Banner principal">
-  <video class="hero-video" id="hero-video" muted loop playsinline aria-hidden="true"></video>
+  <video class="hero-video" id="hero-video" autoplay muted loop playsinline preload="none" aria-hidden="true">
+    <source src="videos/hero-1.mp4" type="video/mp4">
+  </video>
   <div class="hero-overlay" aria-hidden="true"></div>
 
   <!-- Gota decorativa -->
@@ -730,14 +732,7 @@
       <!-- Coluna 1: Marca -->
       <div class="footer-brand">
         <a href="index.html" class="footer-logo" aria-label="OilBras — Início">
-          <svg width="32" height="38" viewBox="0 0 40 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M20 3C20 3 3 21 3 31C3 40.4 10.7 46 20 46C29.3 46 37 40.4 37 31C37 21 20 3 20 3Z" fill="#B2006E"/>
-            <ellipse cx="14" cy="27" rx="4" ry="5.5" fill="rgba(255,255,255,0.22)" transform="rotate(-20 14 27)"/>
-          </svg>
-          <div class="logo-text">
-            <span class="logo-name">OilBras</span>
-            <span class="logo-sub">Fluidos Industriais</span>
-          </div>
+          <img src="images/logo.png" alt="OilBras" style="height:52px;width:auto;">
         </a>
         <p class="footer-about">
           Excelência em cada gota.<br>

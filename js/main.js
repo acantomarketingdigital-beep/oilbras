@@ -163,24 +163,10 @@
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
-  /* ---- Vídeo hero: carregamento e reprodução programática ---- */
+  /* ---- Vídeo hero ---- */
   var heroVideo = document.getElementById('hero-video');
   if (heroVideo) {
-    var isPages = location.pathname.indexOf('/pages/') !== -1;
-    heroVideo.src = (isPages ? '../' : '') + 'videos/hero-web.mp4';
-
-    function tryPlayVideo() {
-      var p = heroVideo.play();
-      if (p && p.catch) {
-        p.catch(function () {
-          heroVideo.style.display = 'none'; /* fallback: esconde sem erros */
-        });
-      }
-    }
-
-    heroVideo.addEventListener('canplay', tryPlayVideo, { once: true });
-    heroVideo.addEventListener('error',   function () { heroVideo.style.display = 'none'; });
-    heroVideo.load();
+    heroVideo.play().catch(function () { /* autoplay bloqueado — gradiente CSS aparece */ });
   }
 
   /* ---- Blog preview: rotação de artigos por página ---- */
