@@ -15,7 +15,9 @@
     .linha-nome a{color:var(--dark);text-decoration:none;}
     .linha-nome a:hover{color:var(--accent);}
     .linha-desc{font-size:15px;color:#4A5568;line-height:1.8;margin-bottom:24px;}
-    .linha-img{background:#E8EDF2;border-radius:14px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#A0AEC0;font-size:13px;border:1px dashed #CBD5E0;}
+    .linha-img{border-radius:14px;aspect-ratio:4/3;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.12);}
+    .linha-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease;}
+    .linha-cat:hover .linha-img img{transform:scale(1.04);}
     @media(max-width:768px){.linha-cat{grid-template-columns:1fr;gap:24px;}.linha-img{display:none;}}
   </style>
 </head>
@@ -62,7 +64,7 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
-      <div class="linha-img">Imagem em breve</div>
+      <div class="linha-img"><img src="../images/produtos/usinagem-banner.png" alt="Usinagem de Metais"></div>
     </div>
 
     <!-- Estampagem e Repuxo -->
@@ -76,7 +78,7 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
-      <div class="linha-img">Imagem em breve</div>
+      <div class="linha-img"><img src="../images/produtos/estampagem-banner.png" alt="Estampagem e Repuxo de Metais"></div>
     </div>
 
     <!-- Proteção e Aditivos -->
@@ -90,7 +92,7 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
-      <div class="linha-img">Imagem em breve</div>
+      <div class="linha-img"><img src="../images/produtos/protecao-banner.png" alt="Proteção, Aditivos e Desmoldantes"></div>
     </div>
 
     <!-- Desengraxantes e Preparadores -->
@@ -104,7 +106,7 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
-      <div class="linha-img">Imagem em breve</div>
+      <div class="linha-img"><img src="../images/produtos/desengraxantes-banner.png" alt="Desengraxantes e Preparadores de Superfície"></div>
     </div>
 
     <!-- Higienização -->
@@ -118,7 +120,7 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
       </div>
-      <div class="linha-img">Imagem em breve</div>
+      <div class="linha-img"><img src="../images/produtos/higienizacao-banner.png" alt="Higienização"></div>
     </div>
 
   </div>
