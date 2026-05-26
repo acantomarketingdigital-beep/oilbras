@@ -1,9 +1,10 @@
 # Pasta de configuração do editor
 .claude/
 
-# Vídeos (muito grandes para o GitHub — hospedar via CDN ou servidor)
-videos/*.mp4
+# Vídeo original (muito grande para GitHub)
+videos/hero.mp4
 videos/*.mov
 videos/*.avi
+# hero-web.mp4 (comprimido ~7MB) é rastreado pelo git
 
 .vercel
