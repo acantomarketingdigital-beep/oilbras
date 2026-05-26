@@ -163,12 +163,30 @@
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
-  /* ---- Vídeo hero: fallback silencioso ---- */
-  const heroVideo = document.querySelector('.hero-video');
+  /* ---- Vídeo hero: força reprodução + fallback ---- */
+  var heroVideo = document.querySelector('.hero-video');
   if (heroVideo) {
     heroVideo.addEventListener('error', function () {
       heroVideo.style.display = 'none';
     });
+
+    /* Força play (alguns browsers bloqueiam autoplay mesmo com muted) */
+    function tryPlay() {
+      var p = heroVideo.play();
+      if (p && p.catch) {
+        p.catch(function () {
+          /* Na 1ª interação do usuário, tenta de novo */
+          document.addEventListener('click',      function () { heroVideo.play(); }, { once: true });
+          document.addEventListener('touchstart', function () { heroVideo.play(); }, { once: true });
+        });
+      }
+    }
+
+    if (heroVideo.readyState >= 2) {
+      tryPlay();
+    } else {
+      heroVideo.addEventListener('loadeddata', tryPlay, { once: true });
+    }
   }
 
   /* ---- Blog preview: rotação de artigos por página ---- */
