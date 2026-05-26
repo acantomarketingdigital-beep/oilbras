@@ -60,14 +60,14 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   font-weight: 700;
   letter-spacing: 3px;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--green);
   margin-bottom: 16px;
 }
 .section-tag::before {
   content: '';
   display: block;
   width: 14px; height: 2px;
-  background: var(--accent);
+  background: var(--green);
   flex-shrink: 0;
 }
 .section-title {
@@ -408,7 +408,7 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   font-family: var(--font-h);
   font-size: 44px;
   font-weight: 900;
-  color: var(--accent);
+  color: var(--green);
   line-height: 1;
   margin-bottom: 6px;
 }
@@ -427,7 +427,7 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
 }
 .about-img-bg {
   width:100%; height:100%;
-  background: linear-gradient(145deg, #0D1B2A 0%, #142236 35%, #1f3a52 60%, #b34700 100%);
+  background: linear-gradient(145deg, #0D1B2A 0%, #142236 35%, #1f3a52 60%, #4a7000 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -534,7 +534,7 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
 .prod-card:hover::after { opacity:1; }
 .prod-icon {
   width:52px; height:52px;
-  background: rgba(178,0,110,0.12);
+  background: rgba(141,182,0,0.15);
   border-radius: var(--r-md);
   display: flex;
   align-items: center;
@@ -542,7 +542,9 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   margin-bottom: 20px;
   transition: var(--ease);
 }
-.prod-card:hover .prod-icon { background: rgba(178,0,110,0.22); }
+.prod-card:nth-child(even) .prod-icon { background: rgba(178,0,110,0.12); }
+.prod-card:hover .prod-icon { background: rgba(141,182,0,0.25); }
+.prod-card:nth-child(even):hover .prod-icon { background: rgba(178,0,110,0.22); }
 .prod-title {
   font-family: var(--font-h);
   font-size: 18px;
@@ -593,12 +595,15 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
 }
 .diff-icon {
   width:56px; height:56px;
-  background: rgba(178,0,110,0.1);
+  background: rgba(141,182,0,0.12);
   border-radius: var(--r-md);
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
+}
+.diff-card:nth-child(even) .diff-icon {
+  background: rgba(178,0,110,0.1);
 }
 .diff-title {
   font-family: var(--font-h);
@@ -660,13 +665,13 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   transition: var(--ease);
 }
 .pillar:hover {
-  background: rgba(178,0,110,0.07);
-  border-color: rgba(178,0,110,0.2);
+  background: rgba(141,182,0,0.08);
+  border-color: rgba(141,182,0,0.25);
   transform: translateY(-4px);
 }
 .pillar-icon {
   width:54px; height:54px;
-  background: rgba(178,0,110,0.12);
+  background: rgba(141,182,0,0.15);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -730,8 +735,8 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
 .blog-body { padding:28px; }
 .blog-cat {
   display: inline-block;
-  background: rgba(178,0,110,0.1);
-  color: var(--accent);
+  background: rgba(141,182,0,0.12);
+  color: var(--green);
   font-family: var(--font-h);
   font-size: 10px;
   font-weight: 700;

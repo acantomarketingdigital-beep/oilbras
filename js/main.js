@@ -163,30 +163,24 @@
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   }
 
-  /* ---- Vídeo hero: força reprodução + fallback ---- */
-  var heroVideo = document.querySelector('.hero-video');
+  /* ---- Vídeo hero: carregamento e reprodução programática ---- */
+  var heroVideo = document.getElementById('hero-video');
   if (heroVideo) {
-    heroVideo.addEventListener('error', function () {
-      heroVideo.style.display = 'none';
-    });
+    var isPages = location.pathname.indexOf('/pages/') !== -1;
+    heroVideo.src = (isPages ? '../' : '') + 'videos/hero-web.mp4';
 
-    /* Força play (alguns browsers bloqueiam autoplay mesmo com muted) */
-    function tryPlay() {
+    function tryPlayVideo() {
       var p = heroVideo.play();
       if (p && p.catch) {
         p.catch(function () {
-          /* Na 1ª interação do usuário, tenta de novo */
-          document.addEventListener('click',      function () { heroVideo.play(); }, { once: true });
-          document.addEventListener('touchstart', function () { heroVideo.play(); }, { once: true });
+          heroVideo.style.display = 'none'; /* fallback: esconde sem erros */
         });
       }
     }
 
-    if (heroVideo.readyState >= 2) {
-      tryPlay();
-    } else {
-      heroVideo.addEventListener('loadeddata', tryPlay, { once: true });
-    }
+    heroVideo.addEventListener('canplay', tryPlayVideo, { once: true });
+    heroVideo.addEventListener('error',   function () { heroVideo.style.display = 'none'; });
+    heroVideo.load();
   }
 
   /* ---- Blog preview: rotação de artigos por página ---- */
