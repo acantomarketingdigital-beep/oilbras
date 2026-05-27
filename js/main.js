@@ -203,6 +203,66 @@
     }).join('');
   }
 
+  /* ---- Dropdown mobile de Produtos ---- */
+  document.querySelectorAll('.nav-dropdown > .nav-link').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.closest('.nav-dropdown').classList.toggle('dd-open');
+      }
+    });
+  });
+  // Fecha dropdown ao abrir menu mobile
+  if (hamburger) {
+    hamburger.addEventListener('click', function() {
+      document.querySelectorAll('.nav-dropdown').forEach(function(dd) {
+        dd.classList.remove('dd-open');
+      });
+    });
+  }
+  // Marca o link ativo no dropdown conforme a página atual
+  (function() {
+    var p = location.pathname.replace(/.*\//, '');
+    document.querySelectorAll('.nav-dropdown-menu a').forEach(function(a) {
+      var h = a.getAttribute('href').replace(/^\.\.\/pages\/|^pages\//, '');
+      if (h === p) {
+        a.classList.add('active');
+        a.closest('.nav-dropdown').querySelector('.nav-link').classList.add('active');
+      }
+    });
+  })();
+
+  /* ---- Busca no catálogo ---- */
+  var catSearchInput = document.getElementById('cat-search');
+  if (catSearchInput) {
+    catSearchInput.addEventListener('input', function() {
+      var q = this.value.trim().toLowerCase();
+      var cards = document.querySelectorAll('.cat-card');
+      var visible = 0;
+      cards.forEach(function(card) {
+        var name = (card.querySelector('.produto-nome') || {}).textContent || '';
+        var desc = (card.querySelector('.produto-desc') || {}).textContent || '';
+        var match = !q || name.toLowerCase().includes(q) || desc.toLowerCase().includes(q);
+        card.style.display = match ? '' : 'none';
+        if (match) visible++;
+      });
+      var noRes = document.getElementById('cat-no-results');
+      if (noRes) noRes.classList.toggle('show', visible === 0 && q.length > 0);
+    });
+  }
+
+  /* ---- WhatsApp dinâmico nos cards de catálogo ---- */
+  document.querySelectorAll('.cat-card-btn').forEach(function(btn) {
+    var card = btn.closest('.cat-card');
+    var nameEl = card ? card.querySelector('.produto-nome') : null;
+    if (nameEl) {
+      var name = nameEl.textContent.trim();
+      btn.href = 'https://wa.me/555533758333?text=' +
+        encodeURIComponent('Olá! Gostaria de solicitar um orçamento do produto ' + name + '.');
+    }
+  });
+
   /* ---- Imagens de produtos: carrega de images/produtos/[slug].png ---- */
   document.querySelectorAll('.produto-item').forEach(function(item) {
     var nomeEl = item.querySelector('.produto-nome');

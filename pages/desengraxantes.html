@@ -7,21 +7,6 @@
   <title>Desengraxantes e Preparadores de Superfície — OilBras Fluidos Industriais</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/responsive.css">
-  <style>
-    .breadcrumb{font-size:13px;color:#718096;margin-bottom:40px;}
-    .breadcrumb a{color:#718096;text-decoration:none;}
-    .breadcrumb a:hover{color:var(--accent);}
-    .subcateg{padding:40px 0 0;margin-top:32px;border-top:2px solid var(--accent);}
-    .subcateg:first-of-type{border-top:none;padding-top:0;margin-top:0;}
-    .subcateg-titulo{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
-    .subcateg-desc{font-size:15px;color:#4A5568;line-height:1.8;margin-bottom:32px;max-width:680px;}
-    .produto-item{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:36px 0;border-bottom:1px solid #E2E8F0;}
-    .produto-item:last-child{border-bottom:none;}
-    .produto-nome{font-size:19px;font-weight:700;color:var(--dark);margin-bottom:10px;}
-    .produto-desc{font-size:15px;color:#4A5568;line-height:1.75;}
-    .produto-img{background:#E8EDF2;border-radius:12px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#A0AEC0;font-size:13px;border:1px dashed #CBD5E0;overflow:hidden;}
-    @media(max-width:768px){.produto-item{grid-template-columns:1fr;}}
-  </style>
 </head>
 <body>
 
@@ -33,7 +18,16 @@
     <ul class="navbar-nav" id="nav-menu">
       <li><a href="../index.html" class="nav-link">Home</a></li>
       <li><a href="quem-somos.html" class="nav-link">Quem Somos</a></li>
-      <li><a href="produtos.html" class="nav-link active">Produtos</a></li>
+      <li class="nav-dropdown">
+      <a href="produtos.html" class="nav-link">Produtos <svg class="dd-arrow" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="usinagem.html">Usinagem de Metais</a></li>
+        <li><a href="estampagem.html">Estampagem e Repuxo</a></li>
+        <li><a href="protecao.html">Proteção e Desmoldantes</a></li>
+        <li><a href="desengraxantes.html">Desengraxantes</a></li>
+        <li><a href="higienizacao.html">Higienização</a></li>
+      </ul>
+    </li>
       <li><a href="socioambiental.html" class="nav-link">Socioambiental</a></li>
       <li><a href="blog.html" class="nav-link">Blog</a></li>
       <li><a href="../catalogo.pdf" target="_blank" rel="noopener" class="nav-link">Cat&aacute;logo</a></li>
@@ -52,94 +46,122 @@
   </div>
 </section>
 
-<section class="section-light" style="padding:72px 0;">
-  <div class="container">
-    <p class="breadcrumb"><a href="produtos.html">← Voltar aos Produtos</a></p>
+<section class="catalog-section">
+  <div class="container catalog-wrap">
+    <aside class="cat-sidebar">
+      <div class="cat-search">
+        <input type="text" id="cat-search" placeholder="Buscar produto..." autocomplete="off">
+        <span class="cat-search-ico"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+      </div>
+      <p class="cat-sidebar-label">Linhas de Produto</p>
+      <ul class="cat-nav">
+        <li><a href="usinagem.html">Usinagem de Metais</a></li>
+        <li><a href="estampagem.html">Estampagem e Repuxo</a></li>
+        <li><a href="protecao.html">Proteção e Desmoldantes</a></li>
+        <li><a class="active" href="desengraxantes.html">Desengraxantes</a></li>
+        <li><a href="higienizacao.html">Higienização</a></li>
+      </ul>
+      <div class="cat-contact">
+        <h4>Precisa de ajuda técnica?</h4>
+        <p>Nossa equipe indica a solução certa para o seu processo.</p>
+        <a href="https://wa.me/555533758333?text=Ol%C3%A1!%20Preciso%20de%20ajuda%20t%C3%A9cnica%20para%20escolher%20um%20produto%20OilBras." class="cat-contact-wa" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="contato.html" class="cat-contact-mail">Fale Conosco</a>
+      </div>
+    </aside>
+    <main class="cat-content">
+      <nav class="cat-breadcrumb" aria-label="Breadcrumb">
+        <a href="produtos.html">Produtos</a><span class="sep">›</span><span>Desengraxantes e Preparadores de Superfície</span>
+      </nav>
 
-    <!-- DESENGRAXANTES -->
-    <div class="subcateg">
-      <p class="subcateg-titulo">Desengraxantes</p>
-      <p class="subcateg-desc">Produtos químicos desenvolvidos para remoção de óleos, graxas e sujidades pesadas em peças e equipamentos industriais. Atuam na limpeza eficiente, contribuindo para melhor desempenho operacional e conservação das superfícies.</p>
-
-      <div class="produto-item fade-in">
-        <div>
-          <p class="produto-nome">BRASLIMP SK 10</p>
-          <p class="produto-desc">Desengraxante com pH neutro, indicado para diversos processos industriais e também para limpeza de pisos com equipamentos tipo Mopp.</p>
+      <div class="cat-subgroup">
+        <div class="cat-subgroup-hd"><span class="cat-subgroup-title">Desengraxantes</span><span class="cat-subgroup-line"></span></div>
+        <div class="cat-product-grid">
+          <article class="produto-item cat-card fade-in">
+            <div class="cat-card-img produto-img"></div>
+            <div class="cat-card-body">
+              <span class="cat-card-tag">Desengraxantes</span>
+              <h3 class="produto-nome">BRASLIMP SK 10</h3>
+              <p class="produto-desc">Desengraxante com pH neutro, indicado para diversos processos industriais e também para limpeza de pisos com equipamentos tipo Mopp.</p>
+              <a href="#" class="cat-card-btn" target="_blank" rel="noopener">Solicitar Orçamento</a>
+            </div>
+          </article>
+          <article class="produto-item cat-card fade-in fd-1">
+            <div class="cat-card-img produto-img"></div>
+            <div class="cat-card-body">
+              <span class="cat-card-tag">Desengraxantes</span>
+              <h3 class="produto-nome">BRASLIMP SK 20</h3>
+              <p class="produto-desc">Desengraxante industrial para máquinas industriais e uso geral, não corrosivo. Indicado para remoção de óleos, graxas e fuligens em diferentes aplicações.</p>
+              <a href="#" class="cat-card-btn" target="_blank" rel="noopener">Solicitar Orçamento</a>
+            </div>
+          </article>
+          <article class="produto-item cat-card fade-in fd-2">
+            <div class="cat-card-img produto-img"></div>
+            <div class="cat-card-body">
+              <span class="cat-card-tag">Desengraxantes</span>
+              <h3 class="produto-nome">BRASLIMP AL 20</h3>
+              <p class="produto-desc">Desengraxante alcalino de alta eficiência, indicado para limpeza pesada em máquinas e pisos industriais. Atua na remoção de sujidades intensas e também como agente desincrustante.</p>
+              <a href="#" class="cat-card-btn" target="_blank" rel="noopener">Solicitar Orçamento</a>
+            </div>
+          </article>
+          <article class="produto-item cat-card fade-in fd-3">
+            <div class="cat-card-img produto-img"></div>
+            <div class="cat-card-body">
+              <span class="cat-card-tag">Desengraxantes</span>
+              <h3 class="produto-nome">BRASLIMP TECH</h3>
+              <p class="produto-desc">Desengraxante e solvente para limpeza e manutenção de peças metálicas. Indicado para remoção de colas em indústrias moveleiras, tintas de impressão e sujidades como graxas e fuligens.</p>
+              <a href="#" class="cat-card-btn" target="_blank" rel="noopener">Solicitar Orçamento</a>
+            </div>
+          </article>
+          <article class="produto-item cat-card fade-in fd-4">
+            <div class="cat-card-img produto-img"></div>
+            <div class="cat-card-body">
+              <span class="cat-card-tag">Desengraxantes</span>
+              <h3 class="produto-nome">BRASLIMP E 70</h3>
+              <p class="produto-desc">Solvente industrial com alto ponto de fulgor e baixo odor, com elevada rigidez dielétrica. Pode ser utilizado em equipamentos em operação.</p>
+              <a href="#" class="cat-card-btn" target="_blank" rel="noopener">Solicitar Orçamento</a>
+            </div>
+          </article>
         </div>
-        <div class="produto-img"></div>
       </div>
 
-      <div class="produto-item fade-in fd-1">
-        <div>
-          <p class="produto-nome">BRASLIMP SK 20</p>
-          <p class="produto-desc">Desengraxante industrial para máquinas industriais e uso geral, não corrosivo. Indicado para remoção de óleos, graxas e fuligens em diferentes aplicações.</p>
+      <div class="cat-subgroup">
+        <div class="cat-subgroup-hd"><span class="cat-subgroup-title">Preparadores de Superfície</span><span class="cat-subgroup-line"></span></div>
+        <div class="cat-product-grid">
+          <article class="produto-item cat-card fade-in">
+            <div class="cat-card-img produto-img"></div>
+            <div class="cat-card-body">
+              <span class="cat-card-tag">Preparadores</span>
+              <h3 class="produto-nome">BRASCAP F-10</h3>
+              <p class="produto-desc">Decapante, desengraxante e fosfatizante de metais (3 em 1). Formulado para retardar a reoxidação até o acabamento final, promovendo maior porosidade e aderência de pinturas.</p>
+              <a href="#" class="cat-card-btn" target="_blank" rel="noopener">Solicitar Orçamento</a>
+            </div>
+          </article>
+          <article class="produto-item cat-card fade-in fd-1">
+            <div class="cat-card-img produto-img"></div>
+            <div class="cat-card-body">
+              <span class="cat-card-tag">Preparadores</span>
+              <h3 class="produto-nome">BRASCAP Y-10</h3>
+              <p class="produto-desc">Decapante para metais amarelos, como latão, bronze e cobre. Remove zinabre, manchas verdes e oxidações, restaurando e realçando a cor natural do metal.</p>
+              <a href="#" class="cat-card-btn" target="_blank" rel="noopener">Solicitar Orçamento</a>
+            </div>
+          </article>
+          <article class="produto-item cat-card fade-in fd-2">
+            <div class="cat-card-img produto-img"></div>
+            <div class="cat-card-body">
+              <span class="cat-card-tag">Preparadores</span>
+              <h3 class="produto-nome">BRASCAP Pass</h3>
+              <p class="produto-desc">Passivador de metais, utilizado após processos de decapagem ácida para prevenir o surgimento rápido de oxidação e proteger a superfície.</p>
+              <a href="#" class="cat-card-btn" target="_blank" rel="noopener">Solicitar Orçamento</a>
+            </div>
+          </article>
         </div>
-        <div class="produto-img"></div>
       </div>
 
-      <div class="produto-item fade-in fd-2">
-        <div>
-          <p class="produto-nome">BRASLIMP AL 20</p>
-          <p class="produto-desc">Desengraxante alcalino de alta eficiência, indicado para limpeza pesada em máquinas e pisos industriais. Atua na remoção de sujidades intensas e também como agente desincrustante.</p>
-        </div>
-        <div class="produto-img">Imagem em breve</div>
-      </div>
-
-      <div class="produto-item fade-in fd-3">
-        <div>
-          <p class="produto-nome">BRASLIMP TECH</p>
-          <p class="produto-desc">Desengraxante e solvente para limpeza e manutenção de peças metálicas. Indicado para remoção de colas em indústrias moveleiras, tintas de impressão e sujidades como graxas e fuligens de peças metálicas.</p>
-        </div>
-        <div class="produto-img"></div>
-      </div>
-
-      <div class="produto-item fade-in fd-4">
-        <div>
-          <p class="produto-nome">BRASLIMP E 70</p>
-          <p class="produto-desc">Solvente industrial com alto ponto de fulgor e baixo odor, com elevada rigidez dielétrica. Pode ser utilizado em equipamentos em operação.</p>
-        </div>
-        <div class="produto-img">Imagem em breve</div>
-      </div>
-    </div>
-
-    <!-- PREPARADORES DE SUPERFÍCIE -->
-    <div class="subcateg">
-      <p class="subcateg-titulo">Preparadores de Superfície</p>
-      <p class="subcateg-desc">Produtos químicos utilizados no tratamento de superfícies metálicas para limpeza, ativação e proteção antes de processos como pintura ou revestimento. Atuam na decapagem e passivação, preparando adequadamente a superfície da peça.</p>
-
-      <div class="produto-item fade-in">
-        <div>
-          <p class="produto-nome">BRASCAP F-10</p>
-          <p class="produto-desc">Decapante, desengraxante e fosfatizante de metais (3 em 1). Formulado para retardar a reoxidação até o acabamento final, promovendo maior porosidade na superfície, potencializando a ancoragem e aderência de pinturas.</p>
-        </div>
-        <div class="produto-img"></div>
-      </div>
-
-      <div class="produto-item fade-in fd-1">
-        <div>
-          <p class="produto-nome">BRASCAP Y-10</p>
-          <p class="produto-desc">Decapante para metais amarelos, como latão, bronze e cobre. Remove zinabre, manchas verdes e oxidações, restaurando e realçando a cor natural do metal.</p>
-        </div>
-        <div class="produto-img"></div>
-      </div>
-
-      <div class="produto-item fade-in fd-2">
-        <div>
-          <p class="produto-nome">BRASCAP Pass</p>
-          <p class="produto-desc">Passivador de metais, utilizado após processos de decapagem ácida para prevenir o surgimento rápido de oxidação e proteger a superfície.</p>
-        </div>
-        <div class="produto-img"></div>
-      </div>
-    </div>
-
-    <div style="margin-top:48px;padding-top:32px;border-top:1px solid #E2E8F0;">
-      <a href="produtos.html" class="btn btn-primary">
-        ← Voltar aos Produtos
-      </a>
-    </div>
-
+      <div id="cat-no-results" class="cat-no-results">Nenhum produto encontrado para esta busca.</div>
+    </main>
   </div>
 </section>
+
 
 <section class="cta-banner">
   <div class="container">
@@ -226,7 +248,16 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand"><a href="../index.html" class="footer-logo"><img src="../images/logo.png" alt="OilBras" style="height:160px;width:auto;"></a><p class="footer-about">Excelência em cada gota. Desde 2005 ao lado da indústria.</p></div>
-      <div><p class="footer-heading">Navegação</p><ul class="footer-links"><li><a href="../index.html">Home</a></li><li><a href="quem-somos.html">Quem Somos</a></li><li><a href="produtos.html">Produtos</a></li><li><a href="socioambiental.html">Socioambiental</a></li><li><a href="blog.html">Blog</a></li><li><a href="contato.html">Contato</a></li></ul></div>
+      <div><p class="footer-heading">Navegação</p><ul class="footer-links"><li><a href="../index.html">Home</a></li><li><a href="quem-somos.html">Quem Somos</a></li><li class="nav-dropdown">
+      <a href="produtos.html" class="nav-link">Produtos <svg class="dd-arrow" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <ul class="nav-dropdown-menu">
+        <li><a href="usinagem.html">Usinagem de Metais</a></li>
+        <li><a href="estampagem.html">Estampagem e Repuxo</a></li>
+        <li><a href="protecao.html">Proteção e Desmoldantes</a></li>
+        <li><a href="desengraxantes.html">Desengraxantes</a></li>
+        <li><a href="higienizacao.html">Higienização</a></li>
+      </ul>
+    </li><li><a href="socioambiental.html">Socioambiental</a></li><li><a href="blog.html">Blog</a></li><li><a href="contato.html">Contato</a></li></ul></div>
       <div><p class="footer-heading">Produtos</p><ul class="footer-links"><li><a href="usinagem.html">Usinagem de Metais</a></li><li><a href="estampagem.html">Estampagem e Repuxo</a></li><li><a href="protecao.html">Proteção e Aditivos</a></li><li><a href="desengraxantes.html">Desengraxantes</a></li><li><a href="higienizacao.html">Higienização</a></li></ul></div>
       <div><p class="footer-heading">Contato</p><ul class="footer-contact-list"><li class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B2006E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.69h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 10.4a16 16 0 0 0 5.67 5.67l1.77-1.77a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+555533758333">(55) 3375-8333</a></li><li class="footer-contact-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#B2006E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:oilbras@oilbras.com.br">oilbras@oilbras.com.br</a></li></ul></div>
     </div>

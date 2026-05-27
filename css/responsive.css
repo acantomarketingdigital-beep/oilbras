@@ -114,6 +114,37 @@
   .blog-grid       { grid-template-columns: 1fr; }
 }
 
+/* ---- Catálogo de produtos ---- */
+@media (max-width: 980px) {
+  .catalog-wrap { grid-template-columns: 1fr; }
+  .cat-sidebar { position: static; }
+  .cat-product-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .cat-product-grid { grid-template-columns: 1fr; }
+  .catalog-section { padding: 40px 0 60px; }
+}
+
+/* ---- Navbar dropdown mobile ---- */
+@media (max-width: 768px) {
+  .nav-dropdown-menu {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    border: none;
+    border-radius: 8px;
+    padding: 4px 0 4px 12px;
+    background: rgba(178,0,110,0.05);
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    transition: none !important;
+    display: none;
+  }
+  .nav-dropdown.dd-open .nav-dropdown-menu { display: block; }
+  .nav-dropdown > .nav-link { width: 100%; justify-content: space-between; }
+}
+
 /* ---- 480px ---- */
 @media (max-width: 480px) {
   .rg2 { grid-template-columns: 1fr !important; }
