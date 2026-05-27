@@ -1257,28 +1257,28 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
    PRODUTO CARD — CATÁLOGO
    ============================================================ */
 .produto-item.cat-card {
-  /* Override the inline page styles */
   display: flex !important;
   flex-direction: column !important;
   grid-template-columns: unset !important;
   background: #ffffff;
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  box-shadow: 0 4px 22px rgba(13,27,42,0.08);
   border: 1px solid rgba(0,0,0,0.05);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
   padding: 0 !important;
   gap: 0 !important;
 }
 .produto-item.cat-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 48px rgba(0,0,0,0.14);
+  transform: translateY(-8px);
+  box-shadow: 0 28px 60px rgba(13,27,42,0.16);
 }
 
+/* Área da imagem — gradiente suave, sem caixa dura */
 .cat-card .cat-card-img.produto-img {
-  height: 185px !important;
+  height: 200px !important;
   width: 100% !important;
-  background: #EEF2F7 !important;
+  background: linear-gradient(175deg, #f5f7fa 0%, #edf0f5 100%) !important;
   border-radius: 0 !important;
   aspect-ratio: unset !important;
   display: flex !important;
@@ -1287,15 +1287,25 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   font-size: 12px !important;
   color: #B0BACA !important;
   border: none !important;
-  border-bottom: 1px solid #EDF2F7 !important;
+  border-bottom: none !important;
   flex-shrink: 0;
+  overflow: hidden !important;
 }
+
+/* Imagem — zoom suave no hover via transform no card pai */
 .cat-card .cat-card-img img {
   width: 100% !important;
   height: 100% !important;
   object-fit: contain !important;
-  padding: 16px !important;
+  padding: 20px !important;
   display: block !important;
+  transition: transform 0.40s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              filter 0.40s ease !important;
+  will-change: transform;
+}
+.produto-item.cat-card:hover .cat-card-img img {
+  transform: scale(1.09);
+  filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.13));
 }
 
 .cat-card-body {
