@@ -29,6 +29,8 @@
 
     navMenu.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
+        // Skip dropdown triggers — they expand the submenu, not navigate
+        if (link.parentElement && link.parentElement.classList.contains('nav-dropdown')) return;
         navMenu.classList.remove('mobile-open');
         hamburger.classList.remove('active');
         document.body.style.overflow = '';
