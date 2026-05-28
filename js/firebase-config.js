@@ -14,4 +14,4 @@ window.FIREBASE_CONFIG = {
 
 // Chave da API ImgBB para upload de imagens do blog
 // Crie uma conta grátis em imgbb.com → API → gere a chave e cole aqui
-window.IMGBB_KEY = "COLE_AQUI";
+window.IMGBB_KEY = "9879f21c32bfd7c4820d0249d4121612";
