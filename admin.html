@@ -294,16 +294,14 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
 <script src="js/firebase-config.js"></script>
 
 <script>
 (function () {
   // ── INIT ─────────────────────────────────────────────────────────
   firebase.initializeApp(window.FIREBASE_CONFIG);
-  var auth    = firebase.auth();
-  var db      = firebase.firestore();
-  var storage = firebase.storage();
+  var auth = firebase.auth();
+  var db   = firebase.firestore();
 
   var editingId = null;
 
@@ -482,30 +480,34 @@
     if (!file || !file.type.startsWith('image/')) {
       setUploadMsg('Selecione um arquivo de imagem (JPG, PNG, WebP).', 'err'); return;
     }
+    var key = (window.IMGBB_KEY || '').trim();
+    if (!key || key === 'COLE_AQUI') {
+      setUploadMsg('Chave ImgBB não configurada — peça ao desenvolvedor para configurar.', 'err'); return;
+    }
+
     var barWrap = document.getElementById('upload-bar-wrap');
     var bar     = document.getElementById('upload-bar');
-    var name    = Date.now() + '-' + file.name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9._-]/g, '');
-    var ref     = storage.ref('blog-covers/' + name);
-    var task    = ref.put(file);
-
     barWrap.style.display = 'block';
-    setUploadMsg('Enviando...', '');
+    bar.style.width = '30%';
+    setUploadMsg('Enviando imagem…', '');
 
-    task.on('state_changed',
-      function (snap) {
-        var pct = Math.round(snap.bytesTransferred / snap.totalBytes * 100);
-        bar.style.width = pct + '%';
-        setUploadMsg('Enviando ' + pct + '%…', '');
-      },
-      function (err) { setUploadMsg('Erro: ' + err.message, 'err'); },
-      function () {
-        task.snapshot.ref.getDownloadURL().then(function (url) {
-          document.getElementById('f-img').value = url;
-          previewImg(url);
-          setUploadMsg('✓ Imagem enviada com sucesso!', 'ok');
-        });
-      }
-    );
+    var fd = new FormData();
+    fd.append('image', file);
+
+    fetch('https://api.imgbb.com/1/upload?key=' + key, { method: 'POST', body: fd })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (!data.success) throw new Error(data.error && data.error.message || 'Erro desconhecido');
+        bar.style.width = '100%';
+        var url = data.data.url;
+        document.getElementById('f-img').value = url;
+        previewImg(url);
+        setUploadMsg('✓ Imagem enviada com sucesso!', 'ok');
+      })
+      .catch(function (err) {
+        setUploadMsg('Erro no upload: ' + err.message, 'err');
+        bar.style.width = '0';
+      });
   }
 
   var zone = document.getElementById('upload-zone');

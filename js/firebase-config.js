@@ -11,3 +11,7 @@ window.FIREBASE_CONFIG = {
   messagingSenderId: "565463218523",
   appId:             "1:565463218523:web:7eb49ebd1757335b55027e"
 };
+
+// Chave da API ImgBB para upload de imagens do blog
+// Crie uma conta grátis em imgbb.com → API → gere a chave e cole aqui
+window.IMGBB_KEY = "COLE_AQUI";
