@@ -112,8 +112,23 @@
       display: flex; gap: 10px; justify-content: flex-end;
       margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border);
     }
-    .img-hint { font-size: 11px; color: var(--gray); margin-top: 5px; }
-    .img-preview { width: 100%; height: 140px; border-radius: 8px; object-fit: cover; display: none; margin-top: 8px; }
+    .img-preview { width: 100%; height: 160px; border-radius: 10px; object-fit: cover; display: none; margin-top: 10px; }
+    .upload-zone {
+      border: 2px dashed var(--border); border-radius: 10px; padding: 24px 16px;
+      text-align: center; cursor: pointer; transition: border-color .2s, background .2s;
+      background: var(--light); user-select: none;
+    }
+    .upload-zone:hover, .upload-zone.drag-over { border-color: var(--accent); background: #fff7fc; }
+    .upload-zone p { font-size: 13px; color: var(--gray); margin: 8px 0 12px; }
+    .upload-choose {
+      display: inline-block; padding: 8px 20px; border-radius: 8px;
+      background: var(--accent); color: #fff; font-size: 13px; font-weight: 600; cursor: pointer;
+    }
+    .upload-bar-wrap { display: none; height: 5px; background: var(--border); border-radius: 3px; margin-top: 10px; overflow: hidden; }
+    .upload-bar { height: 100%; background: var(--accent); width: 0; transition: width .15s ease; }
+    .upload-msg  { font-size: 12px; margin-top: 6px; display: none; }
+    .upload-msg.ok  { color: var(--green); }
+    .upload-msg.err { color: var(--red); }
 
     /* ── TOAST ─────────────────────────────────── */
     #toast {
@@ -232,9 +247,16 @@
       </div>
 
       <div class="field">
-        <label for="f-img">URL da imagem de capa</label>
-        <input type="url" id="f-img" placeholder="https://..." oninput="previewImg(this.value)">
-        <p class="img-hint">Dica: suba a imagem em <strong>imgbb.com</strong> (gratuito) e cole o link aqui.</p>
+        <label>Imagem de capa</label>
+        <div class="upload-zone" id="upload-zone">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#B2006E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <p>Arraste a imagem aqui ou</p>
+          <label class="upload-choose" for="f-img-file">Escolher arquivo</label>
+          <input type="file" id="f-img-file" accept="image/*" style="display:none;">
+        </div>
+        <div class="upload-bar-wrap" id="upload-bar-wrap"><div class="upload-bar" id="upload-bar"></div></div>
+        <p class="upload-msg" id="upload-msg"></p>
+        <input type="hidden" id="f-img" value="">
         <img id="img-preview" class="img-preview" alt="Preview da capa">
       </div>
 
@@ -272,14 +294,16 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-storage-compat.js"></script>
 <script src="js/firebase-config.js"></script>
 
 <script>
 (function () {
   // ── INIT ─────────────────────────────────────────────────────────
   firebase.initializeApp(window.FIREBASE_CONFIG);
-  var auth = firebase.auth();
-  var db   = firebase.firestore();
+  var auth    = firebase.auth();
+  var db      = firebase.firestore();
+  var storage = firebase.storage();
 
   var editingId = null;
 
@@ -347,6 +371,7 @@
     document.getElementById('f-date').value = new Date().toISOString().slice(0, 10);
     document.getElementById('btn-delete').style.display = 'none';
     document.getElementById('img-preview').style.display = 'none';
+    resetUploadUI();
     openOverlay();
   });
 
@@ -436,6 +461,63 @@
       img.style.display = 'none';
     }
   };
+
+  // ── IMAGE UPLOAD ──────────────────────────────────────────────────
+  function resetUploadUI() {
+    document.getElementById('upload-bar-wrap').style.display = 'none';
+    document.getElementById('upload-bar').style.width = '0';
+    var msg = document.getElementById('upload-msg');
+    msg.style.display = 'none'; msg.textContent = ''; msg.className = 'upload-msg';
+    document.getElementById('f-img').value = '';
+    document.getElementById('f-img-file').value = '';
+  }
+
+  function setUploadMsg(text, type) {
+    var el = document.getElementById('upload-msg');
+    el.textContent = text; el.className = 'upload-msg ' + (type || '');
+    el.style.display = 'block';
+  }
+
+  function doUpload(file) {
+    if (!file || !file.type.startsWith('image/')) {
+      setUploadMsg('Selecione um arquivo de imagem (JPG, PNG, WebP).', 'err'); return;
+    }
+    var barWrap = document.getElementById('upload-bar-wrap');
+    var bar     = document.getElementById('upload-bar');
+    var name    = Date.now() + '-' + file.name.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9._-]/g, '');
+    var ref     = storage.ref('blog-covers/' + name);
+    var task    = ref.put(file);
+
+    barWrap.style.display = 'block';
+    setUploadMsg('Enviando...', '');
+
+    task.on('state_changed',
+      function (snap) {
+        var pct = Math.round(snap.bytesTransferred / snap.totalBytes * 100);
+        bar.style.width = pct + '%';
+        setUploadMsg('Enviando ' + pct + '%…', '');
+      },
+      function (err) { setUploadMsg('Erro: ' + err.message, 'err'); },
+      function () {
+        task.snapshot.ref.getDownloadURL().then(function (url) {
+          document.getElementById('f-img').value = url;
+          previewImg(url);
+          setUploadMsg('✓ Imagem enviada com sucesso!', 'ok');
+        });
+      }
+    );
+  }
+
+  var zone = document.getElementById('upload-zone');
+  document.getElementById('f-img-file').addEventListener('change', function () {
+    if (this.files[0]) doUpload(this.files[0]);
+  });
+  zone.addEventListener('dragover',  function (e) { e.preventDefault(); zone.classList.add('drag-over'); });
+  zone.addEventListener('dragleave', function ()  { zone.classList.remove('drag-over'); });
+  zone.addEventListener('drop', function (e) {
+    e.preventDefault(); zone.classList.remove('drag-over');
+    if (e.dataTransfer.files[0]) doUpload(e.dataTransfer.files[0]);
+  });
 
   // ── TOAST ─────────────────────────────────────────────────────────
   function toast(msg, type) {
