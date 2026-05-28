@@ -186,7 +186,7 @@
         var img = p.imageUrl
           ? '<div class="blog-img-inner" style="padding:0;"><img src="' + p.imageUrl + '" alt="' + esc(p.category) + '" style="width:100%;height:100%;object-fit:cover;display:block;"></div>'
           : '<div class="blog-img-inner"></div>';
-        return '<article class="blog-card fade-in ' + delays[i % 3] + '">' +
+        return '<a href="blog-post.html?id=' + doc.id + '" class="blog-card fade-in ' + delays[i % 3] + '" style="display:block;text-decoration:none;color:inherit;">' +
           '<div class="blog-img">' + img + '</div>' +
           '<div class="blog-body">' +
             '<span class="blog-cat">' + esc(p.category) + '</span>' +
@@ -197,7 +197,7 @@
               '<span class="blog-link">Ler mais ' + arrow + '</span>' +
             '</div>' +
           '</div>' +
-        '</article>';
+        '</a>';
       }).join('');
 
       document.querySelector('.blog-full-grid').innerHTML = html;
