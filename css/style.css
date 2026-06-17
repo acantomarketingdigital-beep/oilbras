@@ -996,11 +996,14 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
 }
 .page-hero-deco {
   position: absolute;
-  right: -60px; top:50%;
+  right: -40px;
+  top: 50%;
   transform: translateY(-50%);
-  width: 360px;
-  opacity: 0.05;
+  width: 320px;
+  height: auto;
+  opacity: 0.8;
   pointer-events: none;
+  display: block;
 }
 
 /* ============================================================
@@ -1339,6 +1342,7 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   flex: 1;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -1552,4 +1556,216 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
     padding: 16px 24px;
     font-size: 14px;
   }
+}
+
+/* --- LAYOUT CATÁLOGO TÉCNICO --- */
+.departamento-catalogo {
+  padding: 44px 20px;
+  border-bottom: 1px solid #eaeaea;
+  background-color: #ffffff;
+}
+
+/* Cabeçalho: título + descrição acima do container */
+.catalogo-header {
+  max-width: 1000px;
+  margin: 0 auto 24px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid #8DC63F;
+}
+.departamento-titulo {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: #8DC63F;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.departamento-descricao {
+  font-size: 0.95rem;
+  color: #333;
+  line-height: 1.65;
+  margin: 0;
+  text-align: justify;
+}
+
+/* Container: imagem + grid de produtos lado a lado */
+.catalogo-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+}
+.departamento-catalogo:nth-child(even) .catalogo-container {
+  flex-direction: row-reverse;
+}
+
+/* Coluna da imagem */
+.departamento-imagem {
+  flex: 0 0 36%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  min-height: 200px;
+}
+.departamento-imagem::before {
+  display: none; /* substituído pelo card verde individual */
+}
+.departamento-imagem img {
+  position: relative;
+  z-index: 1;
+  width: 82%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 8px 22px rgba(0,0,0,0.13));
+}
+
+/* Grid de 2 colunas de produtos */
+.departamento-produtos {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 32px;
+  align-content: start;
+}
+/* Seção com 1 produto: ocupa coluna inteira sem desperdiçar espaço */
+.departamento-produtos--single {
+  grid-template-columns: 1fr;
+}
+
+/* Item limpo: sem borda lateral */
+.catalogo-produto-item {
+  display: flex;
+  flex-direction: column;
+}
+.catalogo-produto-nome {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #9B1B9B;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.catalogo-produto-texto {
+  font-size: 0.875rem;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  flex: 1;
+  text-align: justify;
+}
+.btn-orcamento {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #25D366;
+  color: #fff;
+  font-weight: 700;
+  font-family: 'Barlow', sans-serif;
+  text-decoration: none;
+  padding: 7px 14px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+  align-self: flex-start;
+}
+.btn-orcamento:hover {
+  background-color: #1ebd5c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+}
+
+/* Coluna com múltiplas imagens empilhadas (Sintéticos) */
+.departamento-imagem--stack {
+  flex: 0 0 42%;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0;
+  min-height: auto;
+}
+.departamento-imagem--stack::before {
+  display: none;
+}
+
+/* Coluna ampliada — tambor Semissintéticos */
+.departamento-imagem--lg {
+  flex: 0 0 52%;
+}
+
+/* ----
+   Losangos decorativos — losango preenchido + losango outline
+   A imagem "vaza" (breakout) por cima dos dois losangos.
+---- */
+.img-card-verde {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 14px;
+  overflow: hidden; /* evita espaço fantasma do losango outline */
+}
+
+/* Losango preenchido — principal */
+.img-card-verde::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 48%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 62%;
+  height: 62%;
+  background: #8DC63F;
+  border-radius: 8px;
+  z-index: 0;
+}
+
+/* Losango outline — menor, canto inferior-direito */
+.img-card-verde::after {
+  content: '';
+  position: absolute;
+  top: 68%;
+  left: 68%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  width: 36%;
+  height: 36%;
+  background: transparent;
+  border: 2px solid #8DC63F;
+  border-radius: 5px;
+  z-index: 0;
+}
+
+/* Imagem flutua por cima dos losangos */
+.img-card-verde img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,0.20));
+}
+
+/* Stack (3 sintéticos empilhados) */
+.departamento-imagem--stack .img-card-verde {
+  padding: 22px 10px;
+}
+.departamento-imagem--stack .img-card-verde img {
+  width: 88%;
+}
+
+/* Tambor Semissintéticos — coluna levemente maior */
+.departamento-imagem--lg {
+  flex: 0 0 42%;
+}
+.departamento-imagem--lg .img-card-verde {
+  padding: 36px 14px;
+}
+.departamento-imagem--lg .img-card-verde img {
+  width: 105%;
 }

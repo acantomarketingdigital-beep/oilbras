@@ -188,3 +188,30 @@
   /* CTA */
   .cta-deco { display:none; }
 }
+
+@media (max-width: 991px) {
+  .catalogo-container,
+  .departamento-catalogo:nth-child(even) .catalogo-container {
+    flex-direction: column;
+    gap: 32px;
+  }
+  .departamento-imagem {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    min-height: 200px;
+  }
+  .departamento-catalogo {
+    padding: 48px 20px;
+  }
+  .catalogo-header {
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 600px) {
+  .departamento-produtos {
+    grid-template-columns: 1fr;
+  }
+}
