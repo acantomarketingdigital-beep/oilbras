@@ -1960,7 +1960,7 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
 }
 
 /* Mobile */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .catalogo-tecnico .catalogo-produto-item {
     grid-template-columns: 1fr !important;
     grid-template-areas:
@@ -1969,7 +1969,9 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
       "btn" !important;
   }
   .catalogo-tecnico .btn-orcamento {
-    align-self: flex-start !important;
+    align-self: start !important;
+    margin-top: 4px !important;
+    white-space: normal !important;
   }
 }
 
@@ -2064,7 +2066,7 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
 }
 
 /* Mobile: empilha tudo verticalmente */
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .cat-card-body {
     grid-template-columns: 1fr !important;
     grid-template-areas:
@@ -2073,7 +2075,14 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
       "btn" !important;
   }
   .cat-card .cat-card-btn {
-    align-self: flex-start !important;
+    align-self: start !important;
     margin-top: 4px !important;
+    white-space: normal !important;
   }
+}
+
+/* Sidebar oculta no mobile — navegação já está no menu */
+@media (max-width: 768px) {
+  .cat-sidebar { display: none !important; }
+  .catalog-wrap { display: block !important; }
 }
