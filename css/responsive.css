@@ -185,6 +185,11 @@
   .page-hero { padding: 110px 0 56px; }
   .page-hero-deco { display:none; }
 
+  /* Cat intro */
+  .cat-intro { padding: 48px 0 0; }
+  .cat-intro-grid { grid-template-columns: 1fr; gap: 32px; }
+  .cat-intro-img { aspect-ratio: 16/9; }
+
   /* CTA */
   .cta-deco { display:none; }
 }

@@ -4,18 +4,18 @@
    VARIÁVEIS
    ============================================================ */
 :root {
-  --dark:      #0D1B2A;
-  --darker:    #060E1A;
+  --dark:      #901e78;
+  --darker:    #901e78;
   --accent:    #B2006E;
   --accent-h:  #8D0055;
-  --green:     #8DB600;
+  --green:     #84c225;
   --white:     #FFFFFF;
   --light:     #F5F5F5;
   --muted:     #8A9BB0;
   --border:    rgba(0,0,0,0.08);
   --font-h:    'Barlow', sans-serif;
   --font-b:    'Inter', sans-serif;
-  --nav-h:     80px;
+  --nav-h:     180px;
   --r-sm:      4px;
   --r-md:      8px;
   --r-lg:      16px;
@@ -195,6 +195,11 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   display: flex;
   align-items: center;
   flex-shrink: 0;
+}
+.navbar-logo img {
+  height: 160px !important;
+  width: auto;
+  display: block;
 }
 .logo-icon { width:36px; height:36px; flex-shrink:0; }
 .logo-text { display:flex; flex-direction:column; line-height:1; }
@@ -491,8 +496,9 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   right: -100px; top: 50%;
   transform: translateY(-50%);
   width: 500px;
-  opacity: 0.03;
+  opacity: 0.05;
   pointer-events: none;
+  object-fit: contain;
 }
 .products-top {
   display: grid;
@@ -502,14 +508,13 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
 }
 .products-bottom {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(3,1fr);
   gap: 24px;
-  max-width: 816px;
   margin: 0 auto 56px;
 }
 .prod-card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.25);
   border-radius: var(--r-lg);
   padding: 36px 28px;
   transition: var(--ease);
@@ -526,15 +531,15 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   transition: var(--ease);
 }
 .prod-card:hover {
-  background: rgba(255,255,255,0.07);
-  border-color: rgba(178,0,110,0.22);
+  background: rgba(255,255,255,0.22);
+  border-color: rgba(255,255,255,0.4);
   transform: translateY(-6px);
   box-shadow: 0 20px 50px rgba(0,0,0,0.35);
 }
 .prod-card:hover::after { opacity:1; }
 .prod-icon {
   width:52px; height:52px;
-  background: rgba(141,182,0,0.15);
+  background: rgba(132,194,37,0.28);
   border-radius: var(--r-md);
   display: flex;
   align-items: center;
@@ -542,9 +547,9 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   margin-bottom: 20px;
   transition: var(--ease);
 }
-.prod-card:nth-child(even) .prod-icon { background: rgba(178,0,110,0.12); }
-.prod-card:hover .prod-icon { background: rgba(141,182,0,0.25); }
-.prod-card:nth-child(even):hover .prod-icon { background: rgba(178,0,110,0.22); }
+.prod-card:nth-child(even) .prod-icon { background: rgba(255,255,255,0.18); }
+.prod-card:hover .prod-icon { background: rgba(132,194,37,0.42); }
+.prod-card:nth-child(even):hover .prod-icon { background: rgba(255,255,255,0.28); }
 .prod-title {
   font-family: var(--font-h);
   font-size: 18px;
@@ -553,18 +558,18 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   margin-bottom: 10px;
   line-height: 1.3;
 }
-.prod-desc { font-size:14px; color:var(--muted); line-height:1.75; margin-bottom:20px; }
+.prod-desc { font-size:14px; color:rgba(255,255,255,0.78); line-height:1.75; margin-bottom:20px; }
 .prod-link {
   font-family: var(--font-h);
   font-size: 13px;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--green);
   display: inline-flex;
   align-items: center;
   gap: 6px;
   transition: var(--ease);
 }
-.prod-link:hover { gap:10px; }
+.prod-link:hover { gap:10px; color: #fff; }
 .products-cta { text-align:center; }
 
 /* ============================================================
@@ -625,9 +630,10 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
 }
 .sust-deco {
   position: absolute;
-  opacity: 0.04;
+  opacity: 0.05;
   pointer-events: none;
   width: 420px;
+  object-fit: contain;
 }
 .sust-deco-l { left:-140px; top:50%; transform:translateY(-50%); }
 .sust-deco-r { right:-140px; top:50%; transform:translateY(-50%) scaleX(-1); }
@@ -640,7 +646,7 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
 }
 .sust-text {
   font-size: 17px;
-  color: var(--muted);
+  color: rgba(255,255,255,0.80);
   line-height: 1.85;
   margin-bottom: 52px;
   max-width: 600px;
@@ -659,19 +665,19 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   align-items: center;
   gap: 14px;
   padding: 28px 16px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.14);
+  border: 1px solid rgba(255,255,255,0.25);
   border-radius: var(--r-lg);
   transition: var(--ease);
 }
 .pillar:hover {
-  background: rgba(141,182,0,0.08);
-  border-color: rgba(141,182,0,0.25);
+  background: rgba(132,194,37,0.18);
+  border-color: rgba(132,194,37,0.45);
   transform: translateY(-4px);
 }
 .pillar-icon {
   width:54px; height:54px;
-  background: rgba(141,182,0,0.15);
+  background: rgba(132,194,37,0.30);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -795,11 +801,12 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
 }
 .cta-deco {
   position: absolute;
-  opacity: 0.12;
+  opacity: 0.05;
   pointer-events: none;
   width: 200px;
   top: 50%;
   transform: translateY(-50%);
+  object-fit: contain;
 }
 .cta-deco-l { left:4%; }
 .cta-deco-r { right:4%; transform:translateY(-50%) scaleX(-1); }
@@ -823,7 +830,7 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
    ============================================================ */
 .contact {
   padding: 100px 0;
-  background: var(--dark);
+  background: #ffffff;
 }
 .contact-grid {
   display: grid;
@@ -832,6 +839,12 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   align-items: start;
 }
 .contact-info .section-subtitle { margin-bottom: 44px; }
+.contact .section-title { color: var(--dark); }
+.contact .section-subtitle { color: #6B7280; }
+.contact .c-text a,
+.contact .c-text p { color: #2d3748; }
+.contact .c-text strong { color: #718096; }
+.contact .c-text a:hover { color: var(--accent); }
 .contact-items { display:flex; flex-direction:column; gap:22px; }
 .contact-item { display:flex; align-items:flex-start; gap:16px; }
 .c-icon {
@@ -970,7 +983,7 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
    HERO DE PÁGINA INTERNA
    ============================================================ */
 .page-hero {
-  padding: 140px 0 80px;
+  padding: 220px 0 80px;
   background: var(--darker);
   position: relative;
   overflow: hidden;
@@ -990,11 +1003,12 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
 }
 .page-hero-sub {
   font-size: 17px;
-  color: var(--muted);
+  color: rgba(255,255,255,0.82);
   max-width: 580px;
   line-height: 1.75;
 }
 .page-hero-deco {
+  display: none;
   position: absolute;
   right: -40px;
   top: 50%;
@@ -1017,6 +1031,19 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
 .section-dark { padding:80px 0; background:var(--dark); }
 .section-light .section-title { color:var(--dark); }
 .section-light .section-subtitle { color:#6B7280; }
+
+/* ---- Legibilidade em fundos escuros (roxo) ---- */
+.section-dark .section-subtitle,
+.products .section-subtitle,
+.sustainability .section-subtitle,
+.cta-banner .section-subtitle {
+  color: rgba(255,255,255,0.80);
+}
+.section-dark .prod-desc { color: rgba(255,255,255,0.78); }
+.section-dark .prod-link { color: var(--green); }
+.section-dark .prod-link:hover { color: #fff; }
+.section-dark .prod-icon { background: rgba(132,194,37,0.28); }
+.section-dark .prod-card:nth-child(even) .prod-icon { background: rgba(255,255,255,0.18); }
 
 /* ============================================================
    NAVBAR — DROPDOWN DE PRODUTOS
@@ -1570,13 +1597,13 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   max-width: 1000px;
   margin: 0 auto 24px;
   padding-bottom: 14px;
-  border-bottom: 2px solid #8DC63F;
+  border-bottom: 2px solid #84c225;
 }
 .departamento-titulo {
   font-family: 'Barlow', sans-serif;
   font-size: 1.7rem;
   font-weight: 900;
-  color: #8DC63F;
+  color: #901e78;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   margin-bottom: 6px;
@@ -1637,16 +1664,26 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   grid-template-columns: 1fr;
 }
 
-/* Item limpo: sem borda lateral */
+/* Card premium de produto */
 .catalogo-produto-item {
   display: flex;
   flex-direction: column;
+  background: #ffffff;
+  border: 1px solid rgba(144,30,120,0.12);
+  border-radius: 12px;
+  padding: 22px 20px;
+  transition: box-shadow 0.22s ease, transform 0.22s ease, border-color 0.22s ease;
+}
+.catalogo-produto-item:hover {
+  box-shadow: 0 8px 28px rgba(144,30,120,0.10);
+  transform: translateY(-2px);
+  border-color: rgba(144,30,120,0.28);
 }
 .catalogo-produto-nome {
   font-family: 'Barlow', sans-serif;
   font-size: 0.92rem;
   font-weight: 800;
-  color: #9B1B9B;
+  color: #901e78;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   margin-bottom: 6px;
@@ -1663,23 +1700,24 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background-color: #25D366;
+  background-color: #901e78;
   color: #fff;
   font-weight: 700;
   font-family: 'Barlow', sans-serif;
   text-decoration: none;
-  padding: 7px 14px;
-  border-radius: 4px;
+  padding: 8px 16px;
+  border-radius: 6px;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   transition: all 0.25s ease;
   align-self: flex-start;
+  margin-top: auto;
 }
 .btn-orcamento:hover {
-  background-color: #1ebd5c;
+  background-color: #84c225;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+  box-shadow: 0 4px 14px rgba(132,194,37,0.35);
 }
 
 /* Coluna com múltiplas imagens empilhadas (Sintéticos) */
@@ -1721,7 +1759,7 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   transform: translate(-50%, -50%) rotate(45deg);
   width: 62%;
   height: 62%;
-  background: #8DC63F;
+  background: #84c225;
   border-radius: 8px;
   z-index: 0;
 }
@@ -1736,7 +1774,7 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   width: 36%;
   height: 36%;
   background: transparent;
-  border: 2px solid #8DC63F;
+  border: 2px solid #84c225;
   border-radius: 5px;
   z-index: 0;
 }
@@ -1768,4 +1806,274 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
 }
 .departamento-imagem--lg .img-card-verde img {
   width: 105%;
+}
+
+/* Fundo alternado nas seções do catálogo */
+.departamento-catalogo:nth-child(even) {
+  background-color: #f9f7fb;
+}
+
+/* ============================================================
+   INTRODUÇÃO DA CATEGORIA (intro hero com imagem)
+   ============================================================ */
+.cat-intro {
+  padding: 72px 0 0;
+  background: #ffffff;
+}
+.cat-intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.cat-intro-title {
+  font-family: 'Barlow', sans-serif;
+  font-size: clamp(22px, 2.8vw, 36px);
+  font-weight: 800;
+  color: #1a1a2e;
+  line-height: 1.2;
+  margin: 0 0 14px;
+}
+.cat-intro-desc {
+  font-size: 15px;
+  color: #4A5568;
+  line-height: 1.85;
+  margin-bottom: 24px;
+}
+.cat-apps { margin-bottom: 32px; }
+.cat-apps-label {
+  font-family: 'Barlow', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #718096;
+  display: block;
+  margin-bottom: 10px;
+}
+.cat-apps-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  list-style: none;
+  padding: 0; margin: 0;
+}
+.cat-apps-tags li {
+  background: rgba(144,30,120,0.07);
+  color: #901e78;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Barlow', sans-serif;
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(144,30,120,0.18);
+}
+.cat-intro-img {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.13);
+  aspect-ratio: 4/3;
+}
+.cat-intro-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.catalogo-tecnico { padding-top: 16px; }
+
+/* ============================================================
+   LISTA TÉCNICA — Usinagem de Metais (catalogo-tecnico)
+   ============================================================ */
+
+/* Remove colunas de imagem / losangos */
+.catalogo-tecnico .departamento-imagem {
+  display: none !important;
+}
+
+/* Container vira bloco simples (sem flex split) */
+.catalogo-tecnico .catalogo-container {
+  display: block !important;
+  max-width: 860px !important;
+}
+
+/* Lista vertical por categoria */
+.catalogo-tecnico .departamento-produtos {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  grid-template-columns: unset !important;
+}
+
+/* Cada produto: nome + botão na 1ª linha, descrição abaixo */
+.catalogo-tecnico .catalogo-produto-item {
+  display: grid !important;
+  grid-template-columns: 1fr auto !important;
+  grid-template-areas:
+    "name btn"
+    "desc desc" !important;
+  column-gap: 32px !important;
+  row-gap: 12px !important;
+  align-items: start !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(144,30,120,0.13) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 28px 0 !important;
+  transition: background 0.2s ease !important;
+}
+.catalogo-tecnico .catalogo-produto-item:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  background: rgba(144,30,120,0.03) !important;
+  border-bottom-color: rgba(144,30,120,0.22) !important;
+}
+.catalogo-tecnico .departamento-produtos .catalogo-produto-item:last-child {
+  border-bottom: none !important;
+}
+
+/* Nome do produto */
+.catalogo-tecnico .catalogo-produto-nome {
+  grid-area: name !important;
+  font-size: 18px !important;
+  color: #1a1a2e !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  margin-bottom: 0 !important;
+  align-self: center !important;
+}
+
+/* Descrição técnica */
+.catalogo-tecnico .catalogo-produto-texto {
+  grid-area: desc !important;
+  text-align: left !important;
+  margin-bottom: 0 !important;
+  flex: unset !important;
+}
+
+/* Botão de orçamento alinhado ao nome */
+.catalogo-tecnico .btn-orcamento {
+  grid-area: btn !important;
+  align-self: center !important;
+  margin-top: 0 !important;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .catalogo-tecnico .catalogo-produto-item {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "name"
+      "desc"
+      "btn" !important;
+  }
+  .catalogo-tecnico .btn-orcamento {
+    align-self: flex-start !important;
+  }
+}
+
+/* ============================================================
+   LISTA TÉCNICA DE PRODUTOS — catálogos com sidebar
+   ============================================================ */
+
+/* Grid → lista vertical */
+.cat-product-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+}
+
+/* Cada item vira uma linha de lista */
+.produto-item.cat-card {
+  display: block !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid rgba(144,30,120,0.13) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 28px 0 !important;
+  gap: 0 !important;
+  cursor: default !important;
+  transform: none !important;
+  transition: background 0.2s ease !important;
+}
+.produto-item.cat-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  background: rgba(144,30,120,0.03) !important;
+  border-bottom-color: rgba(144,30,120,0.22) !important;
+}
+.cat-product-grid .produto-item.cat-card:last-child {
+  border-bottom: none !important;
+}
+
+/* Esconde imagem/bombona */
+.cat-card .cat-card-img.produto-img {
+  display: none !important;
+}
+
+/* Body: nome + botão na 1ª linha, descrição abaixo */
+.cat-card-body {
+  padding: 0 !important;
+  display: grid !important;
+  grid-template-columns: 1fr auto !important;
+  grid-template-areas:
+    "name btn"
+    "desc desc" !important;
+  column-gap: 32px !important;
+  row-gap: 12px !important;
+  align-items: start !important;
+  flex: unset !important;
+  flex-direction: unset !important;
+}
+
+/* Tag de categoria — oculta (cabeçalho do subgrupo já mostra) */
+.cat-card .cat-card-tag {
+  display: none !important;
+}
+
+/* Nome do produto */
+.cat-card .produto-nome {
+  grid-area: name !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  color: #1a1a2e !important;
+  margin-bottom: 0 !important;
+  line-height: 1.3 !important;
+  align-self: center !important;
+}
+
+/* Descrição técnica — sem clip, texto completo */
+.cat-card .produto-desc {
+  grid-area: desc !important;
+  font-size: 14px !important;
+  color: #4A5568 !important;
+  line-height: 1.72 !important;
+  margin-bottom: 0 !important;
+  display: block !important;
+  overflow: visible !important;
+}
+
+/* Botão CTA alinhado ao nome */
+.cat-card .cat-card-btn {
+  grid-area: btn !important;
+  align-self: center !important;
+  margin-top: 0 !important;
+  white-space: nowrap !important;
+}
+
+/* Mobile: empilha tudo verticalmente */
+@media (max-width: 640px) {
+  .cat-card-body {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "name"
+      "desc"
+      "btn" !important;
+  }
+  .cat-card .cat-card-btn {
+    align-self: flex-start !important;
+    margin-top: 4px !important;
+  }
 }
