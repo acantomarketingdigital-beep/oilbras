@@ -145,6 +145,14 @@
   .nav-dropdown > .nav-link { width: 100%; justify-content: space-between; }
 }
 
+/* ---- Navbar mobile: logo e altura reduzidos ---- */
+@media (max-width: 768px) {
+  :root { --nav-h: 72px; }
+  .navbar-logo img { height: 52px !important; }
+  .page-hero { padding: 110px 0 56px !important; }
+  .cat-intro { padding: 48px 0 0 !important; }
+}
+
 /* ---- 480px ---- */
 @media (max-width: 480px) {
   .rg2 { grid-template-columns: 1fr !important; }
