@@ -2117,6 +2117,7 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   text-transform: uppercase !important;
   letter-spacing: 0.08em !important;
   font-size: 11px !important;
+  border-radius: 6px !important;
 }
 .cat-card .cat-card-btn:hover {
   background-color: #84c225 !important;
