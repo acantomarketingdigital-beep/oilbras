@@ -259,18 +259,19 @@
         var match = !q
           || name.toLowerCase().indexOf(q) !== -1
           || desc.toLowerCase().indexOf(q) !== -1;
-        item.style.display = match ? '' : 'none';
+        // Usa classe CSS com !important para sobrepor o display:grid !important do .catalogo-tecnico
+        item.classList.toggle('cat-hidden', !match);
         if (match) visible++;
       });
 
       // Oculta seções de departamento quando todos os produtos estão escondidos
       document.querySelectorAll('.departamento-catalogo').forEach(function(section) {
-        if (!q) { section.style.display = ''; return; }
+        if (!q) { section.classList.remove('cat-hidden'); return; }
         var anyVisible = false;
         section.querySelectorAll('.catalogo-produto-item').forEach(function(it) {
-          if (it.style.display !== 'none') anyVisible = true;
+          if (!it.classList.contains('cat-hidden')) anyVisible = true;
         });
-        section.style.display = anyVisible ? '' : 'none';
+        section.classList.toggle('cat-hidden', !anyVisible);
       });
 
       var noRes = document.getElementById('cat-no-results');
