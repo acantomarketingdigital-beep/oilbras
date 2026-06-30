@@ -1,5 +1,5 @@
-// ──────────────────────────────────────────────────────────────
-//  Configuração Firebase — OilBras Blog
+﻿// ──────────────────────────────────────────────────────────────
+//  Configuração Firebase — Oilbras Blog
 //  Preencha com os dados do Firebase Console:
 //  console.firebase.google.com → Seu Projeto → Project Settings
 // ──────────────────────────────────────────────────────────────
