@@ -238,19 +238,43 @@
   /* ---- Busca no catálogo ---- */
   var catSearchInput = document.getElementById('cat-search');
   if (catSearchInput) {
+    // Cria mensagem de "sem resultados" dinamicamente
+    var catTec = document.querySelector('.catalogo-tecnico');
+    if (catTec && !document.getElementById('cat-no-results')) {
+      var noResEl = document.createElement('p');
+      noResEl.id = 'cat-no-results';
+      noResEl.style.cssText = 'display:none;text-align:center;color:#9CA3AF;font-size:15px;padding:48px 0 32px;';
+      noResEl.textContent = 'Nenhum produto encontrado.';
+      catTec.appendChild(noResEl);
+    }
+
     catSearchInput.addEventListener('input', function() {
       var q = this.value.trim().toLowerCase();
-      var cards = document.querySelectorAll('.cat-card');
+      var items = document.querySelectorAll('.catalogo-produto-item');
       var visible = 0;
-      cards.forEach(function(card) {
-        var name = (card.querySelector('.produto-nome') || {}).textContent || '';
-        var desc = (card.querySelector('.produto-desc') || {}).textContent || '';
-        var match = !q || name.toLowerCase().includes(q) || desc.toLowerCase().includes(q);
-        card.style.display = match ? '' : 'none';
+
+      items.forEach(function(item) {
+        var name = (item.querySelector('.catalogo-produto-nome') || {}).textContent || '';
+        var desc = (item.querySelector('.catalogo-produto-texto') || {}).textContent || '';
+        var match = !q
+          || name.toLowerCase().indexOf(q) !== -1
+          || desc.toLowerCase().indexOf(q) !== -1;
+        item.style.display = match ? '' : 'none';
         if (match) visible++;
       });
+
+      // Oculta seções de departamento quando todos os produtos estão escondidos
+      document.querySelectorAll('.departamento-catalogo').forEach(function(section) {
+        if (!q) { section.style.display = ''; return; }
+        var anyVisible = false;
+        section.querySelectorAll('.catalogo-produto-item').forEach(function(it) {
+          if (it.style.display !== 'none') anyVisible = true;
+        });
+        section.style.display = anyVisible ? '' : 'none';
+      });
+
       var noRes = document.getElementById('cat-no-results');
-      if (noRes) noRes.classList.toggle('show', visible === 0 && q.length > 0);
+      if (noRes) noRes.style.display = (visible === 0 && q.length > 0) ? 'block' : 'none';
     });
   }
 
