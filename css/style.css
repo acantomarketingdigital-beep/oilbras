@@ -1960,9 +1960,11 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   margin-top: 0 !important;
 }
 
-/* Utilitário para busca — especificidade 0,3,0 sobrepõe o display:grid !important (0,2,0) */
+/* Utilitário busca — especificidade >= 0,2,0 em todos os casos */
 .catalogo-tecnico .catalogo-produto-item.cat-hidden,
-.departamento-catalogo.cat-hidden { display: none !important; }
+.produto-item.cat-card.cat-hidden,
+.departamento-catalogo.cat-hidden,
+.cat-subgroup.cat-hidden { display: none !important; }
 
 /* Mobile */
 @media (max-width: 768px) {

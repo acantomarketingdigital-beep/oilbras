@@ -238,41 +238,54 @@
   /* ---- Busca no catálogo ---- */
   var catSearchInput = document.getElementById('cat-search');
   if (catSearchInput) {
-    // Cria mensagem de "sem resultados" dinamicamente
-    var catTec = document.querySelector('.catalogo-tecnico');
-    if (catTec && !document.getElementById('cat-no-results')) {
+    // Detecta qual estrutura esta página usa
+    var useNewLayout = document.querySelector('.catalogo-produto-item') !== null;
+
+    // Cria mensagem "sem resultados"
+    if (!document.getElementById('cat-no-results')) {
       var noResEl = document.createElement('p');
       noResEl.id = 'cat-no-results';
       noResEl.style.cssText = 'display:none;text-align:center;color:#9CA3AF;font-size:15px;padding:48px 0 32px;';
       noResEl.textContent = 'Nenhum produto encontrado.';
-      catTec.appendChild(noResEl);
+      var anchor = document.querySelector('.catalogo-tecnico') || document.querySelector('.cat-content');
+      if (anchor) anchor.appendChild(noResEl);
     }
 
     catSearchInput.addEventListener('input', function() {
       var q = this.value.trim().toLowerCase();
-      var items = document.querySelectorAll('.catalogo-produto-item');
       var visible = 0;
 
-      items.forEach(function(item) {
-        var name = (item.querySelector('.catalogo-produto-nome') || {}).textContent || '';
-        var desc = (item.querySelector('.catalogo-produto-texto') || {}).textContent || '';
-        var match = !q
-          || name.toLowerCase().indexOf(q) !== -1
-          || desc.toLowerCase().indexOf(q) !== -1;
-        // Usa classe CSS com !important para sobrepor o display:grid !important do .catalogo-tecnico
-        item.classList.toggle('cat-hidden', !match);
-        if (match) visible++;
-      });
-
-      // Oculta seções de departamento quando todos os produtos estão escondidos
-      document.querySelectorAll('.departamento-catalogo').forEach(function(section) {
-        if (!q) { section.classList.remove('cat-hidden'); return; }
-        var anyVisible = false;
-        section.querySelectorAll('.catalogo-produto-item').forEach(function(it) {
-          if (!it.classList.contains('cat-hidden')) anyVisible = true;
+      if (useNewLayout) {
+        // Estrutura da usinagem: .catalogo-produto-item / .catalogo-produto-nome / .catalogo-produto-texto
+        document.querySelectorAll('.catalogo-produto-item').forEach(function(item) {
+          var name = (item.querySelector('.catalogo-produto-nome') || {}).textContent || '';
+          var desc = (item.querySelector('.catalogo-produto-texto') || {}).textContent || '';
+          var match = !q || name.toLowerCase().indexOf(q) !== -1 || desc.toLowerCase().indexOf(q) !== -1;
+          item.classList.toggle('cat-hidden', !match);
+          if (match) visible++;
         });
-        section.classList.toggle('cat-hidden', !anyVisible);
-      });
+        document.querySelectorAll('.departamento-catalogo').forEach(function(sec) {
+          if (!q) { sec.classList.remove('cat-hidden'); return; }
+          var any = false;
+          sec.querySelectorAll('.catalogo-produto-item').forEach(function(it) { if (!it.classList.contains('cat-hidden')) any = true; });
+          sec.classList.toggle('cat-hidden', !any);
+        });
+      } else {
+        // Estrutura antiga: .cat-card / .produto-nome / .produto-desc / .cat-subgroup
+        document.querySelectorAll('.cat-card').forEach(function(card) {
+          var name = (card.querySelector('.produto-nome') || {}).textContent || '';
+          var desc = (card.querySelector('.produto-desc') || {}).textContent || '';
+          var match = !q || name.toLowerCase().indexOf(q) !== -1 || desc.toLowerCase().indexOf(q) !== -1;
+          card.classList.toggle('cat-hidden', !match);
+          if (match) visible++;
+        });
+        document.querySelectorAll('.cat-subgroup').forEach(function(grp) {
+          if (!q) { grp.classList.remove('cat-hidden'); return; }
+          var any = false;
+          grp.querySelectorAll('.cat-card').forEach(function(c) { if (!c.classList.contains('cat-hidden')) any = true; });
+          grp.classList.toggle('cat-hidden', !any);
+        });
+      }
 
       var noRes = document.getElementById('cat-no-results');
       if (noRes) noRes.style.display = (visible === 0 && q.length > 0) ? 'block' : 'none';
