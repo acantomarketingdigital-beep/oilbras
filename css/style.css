@@ -944,7 +944,7 @@ button { cursor:pointer; border:none; background:none; font-family:var(--font-b)
   gap: 10px;
   margin-bottom: 18px;
 }
-.footer-tagline { font-family: var(--font-h); font-size: 20px; font-weight: 800; color: #1a1a2e; line-height: 1.25; margin-bottom: 8px; }
+.footer-tagline { font-family: var(--font-h); font-size: 20px; font-weight: 800; color: var(--dark); line-height: 1.25; margin-bottom: 8px; }
 .footer-about { font-size:14px; color:#6B7280; line-height:1.85; max-width:280px; }
 .footer-heading {
   font-family: var(--font-h);
